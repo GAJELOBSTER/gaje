@@ -14,18 +14,19 @@
 ## 폴더 구조
 
 ```
-├── src                       # 소스 코드
-│   ├── app                     # 라우팅되는 페이지 (App Router)
-│   ├── assets                  # public에 넣지 않는 정적 자원
-│   ├── components              # 컴포넌트
-│   ├── lib                     # 라이브러리, util 함수, data
-│   ├── recoil                  # 상태관리
-│   └── styles                  # 스타일
-├── docker                    # 도커 이미지 생성을 위한 파일
-│   ├── deploy                  # 프로덕션용 도커 이미지 생성 스크립트
-│   └── local                   # 개발환경용 도커 이미지 생성 스크립트
 ├── env                       # 환경 변수
 ├── public                    # 정적 자원
+├── docker                    # 도커 이미지 생성을 위한 파일
+│   ├── deploy                   # 프로덕션용 도커 이미지 생성 스크립트
+│   └── local                    # 개발환경용 도커 이미지 생성 스크립트
+├── src                       # 소스 코드
+│   ├── app                      # 라우팅되는 페이지 (App Router)
+│   ├── assets                   # public에 넣지 않는 정적 자원
+│   ├── components               # 컴포넌트
+│   ├── lib                      # 라이브러리, util 함수, data
+│   ├── recoil                   # 상태관리
+│   └── styles                   # 스타일
+│
 ├── ecosystem.config.js       # pm2 설정
 ├── docker-compose.yml        # 개발 환경 도커 실행
 ├── docker-compose-deploy.yml # 프로덕션 환경 도커 실행
