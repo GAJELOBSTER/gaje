@@ -12,7 +12,7 @@ services:
       - "/var/services/app/node_modules"
     environment:
       - API_URL=${API_URL}
-      - NEXT_ENV=${NEXT_ENV}
+      - API_VERSION=${API_VERSION}
     networks:
       - app-network
 networks:

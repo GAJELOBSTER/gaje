@@ -38,8 +38,11 @@
 
 1.  env 폴더 안에 생성 환경별 파일 생성
 
-    ```
-    .env.local: 로컬 개발 환경
+    ```sh
+    # 개발 환경
+    .env.local: 로컬 개발
+
+    # 프로덕션 환경
     .env.dev: 개발 서버
     .env.staging: 스테이징 서버
     .env.prod: 프로덕션 서버
@@ -51,7 +54,7 @@
     ### .env.*
 
     # Example
-    NEXT_ENV=local
+    API_VERSION=v1
     API_URL=localhost:3000
     ```
 
@@ -64,7 +67,7 @@
      ```yml
      ### .env.*
 
-     NEXT_ENV=local
+     API_VERSION=v1
      API_URL=localhost:3000
      NEW_ENV=sample # 추가된 환경변수
      ```
@@ -75,14 +78,14 @@
      ### docker-compose.yml
      ### docker-compose-deploy.yml
 
-     # .env 파일에 등록된 변수와 일치해야함
+     # .env.* 파일에 등록된 변수와 일치해야함
      environment:
+       - API_VERSION=${API_VERSION}
        - API_URL=${API_URL}
-       - NEXT_ENV=${NEXT_ENV}
        - NEW_ENV=${NEW_ENV} # 추가된 환경변수
      ```
 
-- Port
+- 포트 변경
 
   - host(공개 포트) -> docker container(컨테이너 내부 포트)
   - 공개 포트 변경 필요 시 앞의 포트번호 변경
@@ -104,15 +107,19 @@
 
 ### 초기 세팅
 
-```bash
-# 코드 다운로드
-git clone
+1. 코드 다운로드
 
-# npm 패키지 다운로드
-npm ci
+   ```
+   git clone [깃 저장소]
+   ```
 
-# 도커 실행
-```
+2. npm 패키지 다운로드
+
+   ```
+   npm ci
+   ```
+
+3. 도커 실행
 
 ### 개발
 
@@ -148,7 +155,7 @@ docker ps
 
 ```
 Options:
-  - a: 멈춘 컨테이너까지 모두 반환
+  -a: 멈춘 컨테이너까지 모두 반환
 ```
 
 ### 컨테이너 내부 접속
