@@ -58,8 +58,8 @@
 3.  docker 환경변수 등록
 
     ```yml
-    ### docker.compose.yml
-    ### docker.compose-deploy.yml
+    ### docker-compose.yml
+    ### docker-compose-deploy.yml
 
     # .env 파일에 등록된 변수와 일치해야함
     environment:
@@ -71,17 +71,25 @@
 
 - host(공개 포트) -> docker container(컨테이너 내부 포트)
 - 공개 포트 변경 필요 시 앞의 포트번호 변경
+
   ```yml
+  ### docker-compose.yml
+  ### docker-compose-deploy.yml
+
   ports:
     - "3000:3000" # {호스트 포트}:{컨테이너 내부 포트}
   ```
 
 ## 프로젝트 실행
 
-### 코드
+### 초기 세팅
 
-```
+```bash
+# 코드 다운로드
 git clone
+
+# npm 패키지 다운로드
+npm ci
 ```
 
 ### 개발
