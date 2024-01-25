@@ -34,7 +34,7 @@
 
 ## 설정
 
-### 환경 변수
+### 최초 작성
 
 1.  env 폴더 안에 생성 환경별 파일 생성
 
@@ -55,30 +55,50 @@
     API_URL=localhost:3000
     ```
 
-3.  docker 환경변수 등록
+### 환경변수 추가 및 포트 변경 필요 시
+
+- 환경변수 추가
+
+  1. .env.\* 파일에 환경 변수 추가 입력
+
+     ```yml
+     ### .env.*
+
+     NEXT_ENV=local
+     API_URL=localhost:3000
+     NEW_ENV=sample # 추가된 환경변수
+     ```
+
+  2. docker 환경변수 등록
+
+     ```yml
+     ### docker-compose.yml
+     ### docker-compose-deploy.yml
+
+     # .env 파일에 등록된 변수와 일치해야함
+     environment:
+       - API_URL=${API_URL}
+       - NEXT_ENV=${NEXT_ENV}
+       - NEW_ENV=${NEW_ENV} # 추가된 환경변수
+     ```
+
+- Port
+
+  - host(공개 포트) -> docker container(컨테이너 내부 포트)
+  - 공개 포트 변경 필요 시 앞의 포트번호 변경
 
     ```yml
     ### docker-compose.yml
     ### docker-compose-deploy.yml
 
-    # .env 파일에 등록된 변수와 일치해야함
-    environment:
-      - API_URL=${API_URL}
-      - NEXT_ENV=${NEXT_ENV}
+    # 기본 설정
+    ports:
+      - "3000:3000" # {호스트 포트}:{컨테이너 내부 포트}
+
+    # 변경 예시
+    ports:
+      - "8080:3000"
     ```
-
-### Port
-
-- host(공개 포트) -> docker container(컨테이너 내부 포트)
-- 공개 포트 변경 필요 시 앞의 포트번호 변경
-
-  ```yml
-  ### docker-compose.yml
-  ### docker-compose-deploy.yml
-
-  ports:
-    - "3000:3000" # {호스트 포트}:{컨테이너 내부 포트}
-  ```
 
 ## 프로젝트 실행
 
@@ -90,6 +110,8 @@ git clone
 
 # npm 패키지 다운로드
 npm ci
+
+# 도커 실행
 ```
 
 ### 개발
