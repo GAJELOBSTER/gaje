@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 소개
 
-## Getting Started
+- Next.js 14 boiler-plate 프로젝트
 
-First, run the development server:
+## 기술 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js - 14.1.0
+- Node.js - 18
+- Recoil
+- Tailwindcss
+- Typescript
+- Docker
+
+## 폴더 구조
+
+```
+├── src                       # 소스 코드
+│   ├── app                     # 라우팅되는 페이지 (App Router)
+│   ├── assets                  # public에 넣지 않는 정적 자원
+│   ├── components              # 컴포넌트
+│   ├── lib                     # 라이브러리, util 함수, data
+│   ├── recoil                  # 상태관리
+│   └── styles                  # 스타일
+├── docker                    # 도커 이미지 생성을 위한 파일
+│   ├── deploy                  # 프로덕션용 도커 이미지 생성 스크립트
+│   └── local                   # 개발환경용 도커 이미지 생성 스크립트
+├── env                       # 환경 변수
+├── public                    # 정적 자원
+├── ecosystem.config.js       # pm2 설정
+├── docker-compose.yml        # 개발 환경 도커 실행
+├── docker-compose-deploy.yml # 프로덕션 환경 도커 실행
+└── tailwind.config.ts        # 테일윈드 설정
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 설정
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 환경 변수
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1.  env 폴더 안에 생성 환경별 파일 생성
 
-## Learn More
+    ```
+    .env.local: 로컬 개발 환경
+    .env.dev: 개발 서버
+    .env.staging: 스테이징 서버
+    .env.prod: 프로덕션 서버
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  환경변수 입력
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```yml
+    ### .env.*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    # Example
+    NEXT_ENV=local
+    API_URL=localhost:3000
+    ```
 
-## Deploy on Vercel
+3.  docker 환경변수 등록
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```yml
+    ### docker.compose.yml
+    ### docker.compose-deploy.yml
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    # .env 파일에 등록된 변수와 일치해야함
+    environment:
+      - API_URL=${API_URL}
+      - NEXT_ENV=${NEXT_ENV}
+    ```
+
+### Port
+
+- host(공개 포트) -> docker container(컨테이너 내부 포트)
+- 공개 포트 변경 필요 시 앞의 포트번호 변경
+  ```yml
+  ports:
+    - "3000:3000" # {호스트 포트}:{컨테이너 내부 포트}
+  ```
+
+## 프로젝트 실행
+
+### 코드
+
+```
+git clone
+```
+
+### 개발
+
+```bash
+# 개발환경 실행
+sh run.sh
+
+# 종료
+crtl + c
+sh down.sh
+```
+
+### 배포
+
+```bash
+# 배포환경 실행
+sh deploy.sh
+
+# 배포 후 변경된 코드 배포
+npm run restart
+
+# 종료
+sh down.sh
+```
+
+## Docker
+
+### 컨테이너 목록 확인
+
+```
+docker ps
+```
+
+```
+Options:
+  - a: 멈춘 컨테이너까지 모두 반환
+```
+
+### 컨테이너 내부 접속
+
+```
+docker exec -it [컨테이너명] /bin/sh
+```

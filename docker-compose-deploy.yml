@@ -1,0 +1,20 @@
+version: "3.1"
+services:
+  nextjs:
+    build:
+      context: ./
+      dockerfile: ./docker/deploy/Dockerfile
+    container_name: nextjs-container
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/var/services/app
+      - "/var/services/app/node_modules"
+    environment:
+      - API_URL=${API_URL}
+      - NEXT_ENV=${NEXT_ENV}
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
