@@ -35,7 +35,7 @@ export default function LoginForm() {
         value={userName}
         onChange={handleUserNameChange}
         onKeyDown={handleUserNameKeyDown}
-        className="typo-btn4 border-gray-30 placeholder-gray-40 h-14 w-full rounded border bg-white pl-4 outline-none"
+        className="placeholder-gray-200 h-10 w-full rounded-3 border border-gray-100 bg-white pl-4 font-regular outline-none"
         placeholder="아이디를 입력해 주세요"
       />
       <div className="mb-2 mt-5">비밀번호</div>
@@ -44,10 +44,10 @@ export default function LoginForm() {
         value={userPassword}
         onChange={handleUserPasswordChange}
         onKeyDown={handleUserPasswordKeyDown}
-        className="typo-btn4 border-gray-30 placeholder-gray-40 h-14 w-full rounded border bg-white pl-4 outline-none"
+        className="placeholder-gray-200 h-10 w-full rounded-3 border border-gray-100 bg-white pl-4 font-regular outline-none"
         placeholder="비밀번호를 입력해주세요"
       />
-      <button className="typo-btn4 bg-orange-1 mt-10 h-14 w-full rounded text-white" onClick={handleClick}>
+      <button className="bg-orange-100 mt-9 h-10 w-full rounded-3 text-white" onClick={handleClick}>
         로그인
       </button>
     </>

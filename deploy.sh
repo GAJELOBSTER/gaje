@@ -1,5 +1,5 @@
 #!/bin/bash
-options=("dev" "staging" "prod")
+options=("dev" "stg" "prod")
 
 echo "배포하는 서버를 선택해주세요:"
 select choice in "${options[@]}"; do
