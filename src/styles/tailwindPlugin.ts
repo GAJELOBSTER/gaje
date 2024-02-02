@@ -66,4 +66,4 @@ const customComponents = {
   ...fontSize,
 };
 
-export { customComponents, pxToRem };
+export { customComponents };

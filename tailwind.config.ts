@@ -1,7 +1,10 @@
 // Libs
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
-import { customComponents, pxToRem } from "./tailwind.plugin";
+
+// Styles
+import { customComponents } from "./src/styles/tailwindPlugin";
+import palette from "./src/styles/palette";
 
 const config: Config = {
   content: [
@@ -11,27 +14,7 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      BG: "#f9f9f9",
-      black: "#111111",
-      white: "#ffffff",
-      orange: {
-        100: "#F65434",
-        200: "#FF5736",
-        300: "#FEEEEB",
-        400: "#FDDDD6",
-      },
-      gray: {
-        50: "#EFF0F2",
-        100: "#E0E1E5",
-        200: "#C1C3CB",
-        300: "#A2A4B2",
-        400: "#838698",
-        500: "#64687E",
-        600: "#505365",
-        700: "#3C3E4C",
-        800: "#282A32",
-        900: "#141519",
-      },
+      ...palette,
     },
     fontWeight: {
       regular: "400",
