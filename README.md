@@ -23,9 +23,10 @@
 │   ├── app                      # 라우팅되는 페이지 (App Router)
 │   ├── assets                   # public에 넣지 않는 정적 자원
 │   ├── components               # 컴포넌트
-│   ├── lib                      # 라이브러리, util 함수, data
+│   ├── libs                      # 라이브러리, util 함수, data, provider
 │   ├── recoil                   # 상태관리
-│   └── styles                   # 스타일
+│   ├── styles                   # 스타일
+│   └── types                    # 데이터 타입
 │
 ├── ecosystem.config.js       # pm2 설정
 ├── docker-compose.yml        # 개발 환경 도커 실행

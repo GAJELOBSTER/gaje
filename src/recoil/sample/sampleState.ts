@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import type { SampleType } from "./sampleType";
+import type { SampleType } from "@/types/state/sampleType";
 
 const tempData = new Array(10).fill({}).map((_, index) => {
   return {
