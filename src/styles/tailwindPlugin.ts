@@ -52,6 +52,9 @@ const typo = {
 
 const cn = {
   center: apply("flex items-center justify-center"),
+  "modal-header": apply("px-7 py-6 typo-h1 h-12 text-navy-800"),
+  "modal-body": apply("px-7 py-5"),
+  "modal-footer": apply("p-7 py-6 typo-title1 h-[96px]"),
 };
 
 addPrefix(typo, "typo");

@@ -3,14 +3,14 @@ import Link from "next/link";
 
 // Libs
 import { navList } from "@/libs/data";
-import SampleLogo from "@/assets/svg/SampleLogo";
+import SampleLogoIcon from "@/assets/svg/SampleLogoIcon";
 
 export default function Navibar() {
   return (
     <div className="w-[260px] bg-gray-50 px-6 py-8 text-black">
       <div className="mb-8">
         <div className="typo-h1 line-height-1 flex items-center gap-4 font-bold">
-          <SampleLogo />
+          <SampleLogoIcon />
           Next Sample
         </div>
       </div>

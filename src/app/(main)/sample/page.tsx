@@ -1,3 +1,10 @@
+import SampleModal from "@/components/modal/SampleModal";
+
 export default function SamplePage() {
-  return <div>Sample</div>;
+  return (
+    <div>
+      <SampleModal>TEST</SampleModal>
+      Sample
+    </div>
+  );
 }

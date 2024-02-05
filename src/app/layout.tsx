@@ -21,6 +21,7 @@ export default function RootLayout({ children }: IProps) {
     <html lang="ko">
       <body>
         <RecoilRootProvider>{children}</RecoilRootProvider>
+        <div id="modal"></div>
       </body>
     </html>
   );
