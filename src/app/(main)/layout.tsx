@@ -9,7 +9,7 @@ export default function MainLayout({ children }: IProps) {
   return (
     <div className="flex min-h-[100vh]">
       <Navibar />
-      <div className="w-[calc(100%-260px)] bg-white p-12">{children}</div>
+      <div className="flex-grow bg-white p-12">{children}</div>
     </div>
   );
 }
