@@ -25,7 +25,7 @@ export default function LoginForm() {
     if (e.key === "Enter") handleClick();
   };
 
-  const handleClick = async () => router.push("/sample");
+  const handleClick = async () => router.push("/main/dashboard");
 
   return (
     <>
