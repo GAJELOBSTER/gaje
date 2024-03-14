@@ -47,7 +47,7 @@ export default function LoginForm() {
         className="h-10 w-full rounded-3 border border-gray-100 bg-white pl-4 font-regular placeholder-gray-200 outline-none"
         placeholder="비밀번호를 입력해주세요"
       />
-      <button className="bg-purple-500 mt-9 h-10 w-full rounded-3 text-white" onClick={handleClick}>
+      <button className="mt-9 h-10 w-full rounded-3 bg-purple-500 text-white" onClick={handleClick}>
         로그인
       </button>
     </>
