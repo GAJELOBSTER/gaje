@@ -5,6 +5,7 @@ import plugin from "tailwindcss/plugin";
 // Styles
 import { customComponents } from "./src/styles/tailwindPlugin";
 import palette from "./src/styles/palette";
+const { black, white, purple, navy, green, red, orange, darkgreen } = palette;
 
 const config: Config = {
   content: [
@@ -14,7 +15,14 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      ...palette,
+      black: black,
+      white: white,
+      brand: { ...purple },
+      neutral: { ...navy },
+      positive: { ...green },
+      negative: { ...red },
+      warning: { ...orange },
+      excel: { ...darkgreen },
     },
     fontWeight: {
       regular: "400",
@@ -44,6 +52,18 @@ const config: Config = {
       "2": "4px",
       "3": "6px",
       "4": "8px",
+    },
+    borderWidth: {
+      "0": "0px",
+      "1": "1px",
+      "2": "2px",
+      "4": "4px",
+    },
+    outlineWidth: {
+      "0": "0px",
+      "1": "1px",
+      "2": "2px",
+      "4": "4px",
     },
   },
   corePlugins: {

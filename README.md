@@ -23,7 +23,7 @@
 │   ├── app                      # 라우팅되는 페이지 (App Router)
 │   ├── assets                   # public에 넣지 않는 정적 자원
 │   ├── components               # 컴포넌트
-│   ├── libs                      # 라이브러리, util 함수, data, provider
+│   ├── libs                     # 라이브러리, util 함수, data, provider
 │   ├── recoil                   # 상태관리
 │   ├── styles                   # 스타일
 │   └── types                    # 데이터 타입
@@ -182,7 +182,7 @@
   3. 배포 후 변경된 코드 배포 시
 
      ```
-     npm run restart
+     sh redeploy.sh
      ```
 
   4. 종료

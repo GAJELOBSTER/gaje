@@ -44,17 +44,26 @@ const fontSize = {
 };
 
 const typo = {
-  h1: apply("font-semibold font-size-6"),
-  h2: apply("font-medium font-size-4"),
-  title1: apply("font-semibold font-size-3 line-height-3"),
-  title2: apply("font-regular font-size-2"),
+  "title1-sb": apply("font-semibold line-height-4 font-size-6"),
+  "title2-sb": apply("font-semibold line-height-4 font-size-5"),
+  "title2-m": apply("font-medium line-height-4 font-size-5"),
+  "body1-sb": apply("font-semibold line-height-4 font-size-4"),
+  "body1-m": apply("font-medium line-height-4 font-size-4"),
+  "body2-sb": apply("font-semibold line-height-3 font-size-3"),
+  "body2-m": apply("font-medium line-height-3 font-size-3"),
+  "body2-r": apply("font-regular line-height-3 font-size-3"),
+  "body3-sb": apply("font-semibold line-height-2 font-size-2"),
+  "body3-m": apply("font-medium line-height-2 font-size-2"),
+  "body3-r": apply("font-regular line-height-2 font-size-2"),
+  "detail-sb": apply("font-semibold line-height-2 font-size-1"),
+  "detail-m": apply("font-medium line-height-2 font-size-1"),
 };
 
 const cn = {
   center: apply("flex items-center justify-center"),
-  "modal-header": apply("px-7 py-6 typo-h1 h-12 text-navy-800"),
-  "modal-body": apply("px-7 py-5"),
-  "modal-footer": apply("p-7 py-6 typo-title1 h-[96px]"),
+  "modal-header": apply("px-7 py-6 typo-title1-sb h-12 text-neutral-800"),
+  "modal-body": apply("px-7 py-5 break-words"),
+  "modal-footer": apply("p-7 typo-body2-m h-[96px]"),
 };
 
 addPrefix(typo, "typo");

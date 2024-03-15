@@ -2,23 +2,30 @@
 
 // Components
 import Modal from "@/components/common/Modal";
-import Btn from "../common/Btn";
+import Btn from "@/components/common/Btn";
 
-interface IProps {
-  children: React.ReactNode;
-  className?: string;
-}
+// Hooks
+import useModal from "@/hooks/useModal";
 
-export default function SampleModal(props: IProps) {
+// Types
+import { IModalProps } from "@/types/commonType";
+
+export default function SampleModal(props: IModalProps) {
+  const { isOpen, closeModal, Trigger } = useModal();
+  const onClose = () => (props.onClose ? props.onClose() : closeModal());
+
   return (
-    <Modal showCloseBtn size="medium" trigger={props.children} triggerClassName={props.className}>
-      <div className="cn-modal-header">Sample Modal</div>
-      <div className="cn-modal-body">Body 입니다</div>
-      <div className="cn-modal-footer">
-        <Btn category="primary" size="medium" width={"100%"}>
-          Button
-        </Btn>
-      </div>
-    </Modal>
+    <>
+      <Modal isOpen={props.isOpen || isOpen} showCloseBtn size="small" onClose={onClose}>
+        <div className="cn-modal-header">Sample Modal</div>
+        <div className="cn-modal-body">Body 입니다</div>
+        <div className="cn-modal-footer">
+          <Btn category="primary" size="large" width={"100%"}>
+            Button
+          </Btn>
+        </div>
+      </Modal>
+      {props.children && <Trigger {...props} />}
+    </>
   );
 }

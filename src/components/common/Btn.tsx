@@ -19,6 +19,8 @@ interface IProps {
   endIcon?: React.ReactNode;
   /** 버튼 가로 길이 */
   width: `${number}${WidthUnitType}` | number;
+  /** 비활성 여부 */
+  disabled?: boolean;
   /** 버튼 클릭 시 이벤트 동작 */
   onClick?: () => void;
 }
@@ -28,28 +30,32 @@ export default function Btn(props: IProps) {
   if (props.width) btnWidth = typeof props.width === "string" ? props.width : `${props.width}px`;
 
   const btnCategory: Record<BtnCategoryType, string> = {
-    primary: "text-white bg-purple-500 hover:bg-purple-600 disabled:opacity-50",
-    secondary: "text-white bg-navy-500 hover:bg-navy-600 disabled:opacity-50",
+    primary: "text-white bg-brand-500 [&:not(:disabled)]:hover:bg-brand-600",
+    secondary: "text-white bg-neutral-500 [&:not(:disabled)]:hover:bg-neutral-600",
   };
 
   const outlineCategory: Record<BtnCategoryType, string> = {
-    primary: "text-purple-500 border border-purple-500 bg-white hover:bg-purple-100 disabled:opacity-50",
-    secondary: "text-navy-700 border border-navy-200 bg-white hover:bg-navy-100 disabled:opacity-50",
+    primary: "text-brand-500 border-1 border-brand-500 bg-white [&:not(:disabled)]:hover:bg-brand-100",
+    secondary: "text-neutral-700 border-1 border-neutral-200 bg-white [&:not(:disabled)]:hover:bg-neutral-100",
   };
 
   const btnSize: Record<BtnSizeType, string> = {
-    large: "typo-h1 px-5 py-4 h-10 gap-3",
-    medium: "typo-h2 px-5 py-3 h-9 gap-3",
-    small: "typo-title1 px-5 py-3 h-8 gap-2",
+    large: "typo-body2-m px-5 py-4 h-10 gap-3",
+    medium: "typo-body2-m px-5 py-3 h-9 gap-3",
+    small: "typo-body3-m px-5 py-3 h-8 gap-2",
   };
 
   return (
-    <div
-      className={`${props.outline ? outlineCategory[props.category] : btnCategory[props.category]} ${btnSize[props.size]} cn-center cursor-pointer rounded-3`}
+    <button
+      className={`
+        ${props.outline ? outlineCategory[props.category] : btnCategory[props.category]} ${btnSize[props.size]}
+        cn-center cursor-pointer rounded-3 disabled:cursor-no-drop disabled:opacity-50
+      `}
       style={{ width: btnWidth }}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.startIcon ?? ""} {props.children} {props.endIcon ?? ""}
-    </div>
+    </button>
   );
 }

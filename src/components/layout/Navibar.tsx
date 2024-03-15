@@ -7,18 +7,18 @@ import SampleLogoIcon from "@/assets/svg/SampleLogoIcon";
 
 export default function Navibar() {
   return (
-    <div className="flex-[0_0_260px] bg-gray-50 px-6 py-8 text-black">
+    <div className="bg-neutral-50 text-neutral-600 flex-[0_0_260px] px-6 py-8">
       <div className="mb-8">
-        <div className="typo-h1 line-height-1 flex items-center gap-4 font-bold">
+        <div className="typo-title2-sb line-height-1 flex items-center gap-4 font-bold">
           <SampleLogoIcon />
           Next Sample
         </div>
       </div>
-      <div className="typo-h2 flex flex-col gap-3">
+      <div className="typo-body2-sb flex flex-col gap-3">
         {navList.map((nav, index) => {
           return (
             <Link
-              className="rounded-3 bg-gray-100 px-4 py-3 hover:bg-gray-200"
+              className="bg-neutral-100 hover:bg-neutral-200 rounded-3 px-4 py-3"
               key={`nav-list-${index}`}
               href={nav.href}
             >
