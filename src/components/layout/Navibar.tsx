@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 // Libs
-import { navList } from "@/libs/data";
+import navList from "@/libs/data/navList";
 import SampleLogoIcon from "@/assets/svg/SampleLogoIcon";
 
 export default function Navibar() {

@@ -4,7 +4,7 @@ type WidthUnitType = "px" | "%" | "em" | "vh";
 type BtnCategoryType = "primary" | "secondary";
 type BtnSizeType = "large" | "medium" | "small";
 
-interface IProps {
+export interface IButtonProps {
   /** 버튼 내용(텍스트) */
   children: React.ReactNode;
   /** 버튼 카테고리, 디자인 시스템(피그마 컨벤션) */
@@ -25,7 +25,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-export default function Btn(props: IProps) {
+export default function Btn(props: IButtonProps) {
   let btnWidth;
   if (props.width) btnWidth = typeof props.width === "string" ? props.width : `${props.width}px`;
 

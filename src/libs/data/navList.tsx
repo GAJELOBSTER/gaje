@@ -1,4 +1,4 @@
-export const navList = [
+const navList = [
   {
     title: "대쉬보드",
     href: "/main/dashboard",
@@ -8,3 +8,5 @@ export const navList = [
     href: "/main/sample",
   },
 ];
+
+export default navList;
