@@ -10,6 +10,6 @@ type PayloadType = {
 const getSampleList = async (payload?: PayloadType) =>
   await customFetch("/sample", { ...payload?.options, method: "GET" });
 
-export const FolderFetch = {
+export const SampleFetch = {
   getSampleList,
 };

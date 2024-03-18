@@ -46,7 +46,7 @@ export default function LoginForm() {
         value={userName}
         onChange={handleUserNameChange}
         onKeyDown={handleUserNameKeyDown}
-        className="typo-body2-m border-1 border-neutral-100 placeholder-neutral-200 text-neutral-800 h-10 w-full rounded-3 bg-white pl-4 font-regular outline-none"
+        className="typo-body2-m h-10 w-full rounded-3 border-1 border-neutral-100 bg-white pl-4 font-regular text-neutral-800 placeholder-neutral-200 outline-none"
         placeholder="아이디를 입력해 주세요"
       />
       <div className="typo-body2-r mb-4 mt-6">비밀번호</div>
@@ -56,11 +56,11 @@ export default function LoginForm() {
           value={userPassword}
           onChange={handleUserPasswordChange}
           onKeyDown={handleUserPasswordKeyDown}
-          className="border-1 border-neutral-100 placeholder-neutral-200 text-neutral-800 h-10 w-full rounded-3 bg-white pl-4 font-regular outline-none"
+          className="h-10 w-full rounded-3 border-1 border-neutral-100 bg-white pl-4 font-regular text-neutral-800 placeholder-neutral-200 outline-none"
           placeholder="비밀번호를 입력해주세요"
         />
         <div
-          className="absolute right-5 top-1/2 h-7 w-7 -translate-y-1/2 cursor-pointer bg-white"
+          className="absolute right-5 top-1/2 h-7 w-7 -translate-y-1/2 cursor-pointer"
           onClick={() => setIsShow(!isShow)}
         >
           {isShow ? <ShowPassword /> : <HidePassword />}
