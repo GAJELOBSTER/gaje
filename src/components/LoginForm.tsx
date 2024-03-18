@@ -20,6 +20,12 @@ export default function LoginForm() {
   const [userPassword, setUserPassword] = useState<string>("");
   const [isShow, setIsShow] = useState<boolean>(false);
 
+  const inputStyle = `
+    typo-body2-m h-10 w-full bg-white pl-5 pr-9 py-4 text-neutral-800 placeholder-neutral-200
+    rounded-3 border-1 border-neutral-100 outline-none
+    focus:border-2 focus:border-neutral-500
+  `;
+
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
   };
@@ -46,17 +52,17 @@ export default function LoginForm() {
         value={userName}
         onChange={handleUserNameChange}
         onKeyDown={handleUserNameKeyDown}
-        className="typo-body2-m h-10 w-full rounded-3 border-1 border-neutral-100 bg-white pl-4 font-regular text-neutral-800 placeholder-neutral-200 outline-none"
+        className={inputStyle}
         placeholder="아이디를 입력해 주세요"
       />
       <div className="typo-body2-r mb-4 mt-6">비밀번호</div>
       <div className="relative">
         <input
-          type="password"
+          type={isShow ? "text" : "password"}
           value={userPassword}
           onChange={handleUserPasswordChange}
           onKeyDown={handleUserPasswordKeyDown}
-          className="h-10 w-full rounded-3 border-1 border-neutral-100 bg-white pl-4 font-regular text-neutral-800 placeholder-neutral-200 outline-none"
+          className={inputStyle}
           placeholder="비밀번호를 입력해주세요"
         />
         <div
