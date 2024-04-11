@@ -13,7 +13,7 @@ export interface IRadioProps {
   category?: RadioCategoryType;
   /** 라디오버튼 데이터 */
   label?: string;
-  /** 데이터 ID */
+  /** 라디오 값 */
   value: string;
   /** 선택된 라디오 값 -> const [sample, setSample] = useState<string>("") */
   checkedValue: string;
@@ -65,7 +65,7 @@ export default function Radio({ category = "default", ...props }: IRadioProps) {
       <div className="flex-[0_0_auto]">
         {props.checkedValue === props.value ? <SelectedRadioBoxIcon /> : <DefaultRadioBoxIcon />}
       </div>
-      {props.label && <div className={"typo-body2-m text-neutral-800 flex-auto"}>{props.label}</div>}
+      {props.label && <div className={"typo-body2-m flex-auto text-neutral-800"}>{props.label}</div>}
     </div>
   );
 }

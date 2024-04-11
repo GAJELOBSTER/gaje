@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 
 // Recoil
-import RecoilRootProvider from "@/libs/provider/RecoilRootProvider";
+import RecoilRootProvider from "@/recoil/RecoilRootProvider";
 
 // Styles
 import "@/styles/globals.css";

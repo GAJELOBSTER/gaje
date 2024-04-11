@@ -53,11 +53,13 @@ export default function CheckBox({ category = "default", ...props }: Iprops) {
   const isAllChecked = useMemo(() => hasInitState && checkBoxListState.every((state) => state), [checkBoxStateList]);
   const isAnyChecked = useMemo(() => checkBoxListState.some((state) => state), [checkBoxStateList]) && isAllCheckBox;
 
-  const updateTotalCheckBoxState = () => {
+  const updateTotalCheckBoxState = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
     setCheckBoxStateList(Object.keys(checkBoxStateList).reduce((pre, cur) => ({ ...pre, [cur]: !isAnyChecked }), {}));
   };
 
-  const updateCheckBoxState = () => {
+  const updateCheckBoxState = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
     if (value === undefined) return;
 
     setCheckBoxStateList((before) => ({ ...before, [value]: !checkBoxStateList[value] }));
@@ -70,9 +72,9 @@ export default function CheckBox({ category = "default", ...props }: Iprops) {
       ${isAllChecked || isChecked ? checkedCheckBoxCategory[category] : isAnyChecked ? checkedCheckBoxCategory[category] : checkBoxCategory[category]}
       ${disabled ? "disabled cursor-no-drop opacity-50" : ""}
     `}
-      onClick={() => {
+      onClick={(event: React.MouseEvent<HTMLDivElement>) => {
         if (disabled) return;
-        isAllCheckBox ? updateTotalCheckBoxState() : updateCheckBoxState();
+        isAllCheckBox ? updateTotalCheckBoxState(event) : updateCheckBoxState(event);
       }}
     >
       <div className="flex-[0_0_auto]">
@@ -85,7 +87,7 @@ export default function CheckBox({ category = "default", ...props }: Iprops) {
         )}
       </div>
 
-      {label && <div className={`typo-body2-m text-neutral-800 flex-auto`}>{label}</div>}
+      {label && <div className={`typo-body2-m flex-auto text-neutral-800`}>{label}</div>}
     </div>
   );
 }
