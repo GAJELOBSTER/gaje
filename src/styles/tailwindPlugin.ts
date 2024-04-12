@@ -61,6 +61,7 @@ const typo = {
 
 const cn = {
   center: apply("flex items-center justify-center"),
+  between: apply("flex items-center justify-between"),
   "modal-header": apply("px-7 py-6 typo-title1-sb h-12 text-neutral-800"),
   "modal-body": apply("px-7 py-5 break-words"),
   "modal-footer": apply("p-7 typo-body2-m h-[96px]"),
