@@ -1,3 +1,17 @@
+import common from "@/i18n/locales/ko/common.json";
+import page from "@/i18n/locales/ko/page.json";
+
+type NestedKeys<T> = T extends object
+  ? {
+      [K in keyof T]-?: K extends string | number ? (T[K] extends object ? `${K}.${NestedKeys<T[K]>}` : `${K}`) : never;
+    }[keyof T]
+  : "";
+
+export type I18nResourceType = {
+  common: NestedKeys<typeof common>;
+  page: NestedKeys<typeof page>;
+};
+
 export const i18nLocales = ["ko", "en"] as const;
 export type I18nLocaleType = (typeof i18nLocales)[number];
 

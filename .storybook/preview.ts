@@ -1,6 +1,5 @@
 import "../src/styles/globals.css";
 import i18n from "../src/i18n/i18-storybook";
-// import i18n from "react-i18next";
 
 import type { Preview } from "@storybook/react";
 
@@ -14,7 +13,7 @@ const preview: Preview = {
   },
   parameters: {
     i18n,
-    // actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,

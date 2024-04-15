@@ -1,22 +1,9 @@
 import { createInstance, i18n } from "i18next";
 import { initReactI18next } from "react-i18next/initReactI18next";
 import resourcesToBackend from "i18next-resources-to-backend";
-import i18nConfig, { I18nLocaleType, i18nNamespaces } from "@/i18n/i18nConfig";
+import i18nConfig, { I18nLocaleType, i18nNamespaces, I18nResourceType } from "@/i18n/i18nConfig";
 import Backend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
-import common from "@/i18n/locales/ko/common.json";
-import page from "@/i18n/locales/ko/page.json";
-
-type NestedKeys<T> = T extends object
-  ? {
-      [K in keyof T]-?: K extends string | number ? (T[K] extends object ? `${K}.${NestedKeys<T[K]>}` : `${K}`) : never;
-    }[keyof T]
-  : "";
-
-type I18nResourceType = {
-  common: NestedKeys<typeof common>;
-  page: NestedKeys<typeof page>;
-};
 
 export async function useTranslation<T extends keyof I18nResourceType>(
   locale: I18nLocaleType,
@@ -50,6 +37,6 @@ export async function useTranslation<T extends keyof I18nResourceType>(
   return {
     i18n: i18nInstance,
     resources: i18nInstance.services.resourceStore.data,
-    t: (key: I18nResourceType[T]) => i18nInstance?.t(key),
+    t: (key: I18nResourceType[T]) => i18nInstance?.t(key) as string,
   };
 }
