@@ -1,0 +1,15 @@
+{
+  "ok": "OK",
+  "cancle": "Cancle",
+  "nav": {
+    "title": "Next Sample",
+    "dashboard": "Dashboard",
+    "sample": "Sample"
+  },
+  "modal": {
+    "sample": {
+      "title": "Sample Modal",
+      "contents": "Contents..."
+    }
+  }
+}

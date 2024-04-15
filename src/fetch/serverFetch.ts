@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 // Libs
-import { logoutOnTokenExpiration, reissueAccessToken } from "@/libs/utils";
+import { isSuccessResponse, logoutOnTokenExpiration, reissueAccessToken } from "@/libs/utils";
 
 export default async function serverFetch(url: string, options: RequestInit) {
   const { method, body } = options;
@@ -35,7 +35,7 @@ export default async function serverFetch(url: string, options: RequestInit) {
   if (originFetchResponse.status === 401) {
     const reissueResponse = await reissueAccessToken(refreshToken);
     const reissueResult = await reissueResponse.json();
-    if (reissueResponse?.status !== 200) return logoutOnTokenExpiration();
+    if (!isSuccessResponse(reissueResponse.status)) return logoutOnTokenExpiration();
 
     const newAccessToken = reissueResult.accessToken;
     const reFetchResponse: any = await fetch(fetchURL, {

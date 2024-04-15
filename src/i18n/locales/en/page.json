@@ -1,0 +1,17 @@
+{
+  "login": {
+    "title": "Sample Login",
+    "id": "ID",
+    "id_placeholder": "Please enter your ID",
+    "password": "Password",
+    "password_placeholder": "Please enter your password",
+    "login": "Login"
+  },
+  "dashboard": {
+    "title": "Dashboard Page"
+  },
+  "sample": {
+    "title": "Sample Page",
+    "sample_modal": "Sample Modal"
+  }
+}

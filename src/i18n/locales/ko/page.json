@@ -1,0 +1,17 @@
+{
+  "login": {
+    "title": "샘플 로그인",
+    "id": "아이디",
+    "id_placeholder": "아이디를 입력해 주세요",
+    "password": "비밀번호",
+    "password_placeholder": "비밀번호를 입력해 주세요",
+    "login": "로그인"
+  },
+  "dashboard": {
+    "title": "대쉬보드 페이지"
+  },
+  "sample": {
+    "title": "샘플 페이지",
+    "sample_modal": "샘플 모달"
+  }
+}

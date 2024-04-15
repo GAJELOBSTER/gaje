@@ -1,4 +1,16 @@
+import { I18nLocaleType } from "@/i18n/i18nConfig";
+
 export type SearchParamsType = Record<string, string>;
+
+export interface ILocaleProps {
+  locale: I18nLocaleType;
+}
+
+export interface IPageProps {
+  children: React.ReactNode;
+  params: ILocaleProps;
+  searchParams: SearchParamsType;
+}
 
 export interface IModalProps {
   /** 모달 오픈 유무 */

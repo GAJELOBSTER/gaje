@@ -12,4 +12,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const LoginForm: Story = {};
+export const LoginForm: Story = {
+  render: () => (
+    <div className="[&_select]:hidden">
+      <LoginFormComponent />
+    </div>
+  ),
+};

@@ -1,10 +1,10 @@
 const navList = [
   {
-    title: "대쉬보드",
+    title: "nav.dashboard",
     href: "/main/dashboard",
   },
   {
-    title: "샘플",
+    title: "nav.sample",
     href: "/main/sample",
   },
 ];

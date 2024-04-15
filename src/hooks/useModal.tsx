@@ -19,8 +19,8 @@ export default function useModal(): ModalHookReturnType {
   const closeModal = () => setIsOpen(false);
 
   const Trigger = ({ className, children }: IModalTriggerProps) => (
-    <div className={`${className} cursor-pointer`}>
-      <div onClick={() => setIsOpen(true)}>{children}</div>
+    <div className={`${className} inline-block cursor-pointer`} onClick={() => setIsOpen(true)}>
+      {children}
     </div>
   );
 

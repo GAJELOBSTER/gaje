@@ -1,0 +1,16 @@
+{
+  "ok": "확인",
+  "cancle": "취소",
+  "nav": {
+    "title": "Next 샘플",
+    "dashboard": "대쉬보드",
+    "sample": "샘플"
+  },
+  "modal": {
+    "sample": {
+      "title": "샘플 모달",
+      "contents": "내용...",
+      "ok": "확인"
+    }
+  }
+}
