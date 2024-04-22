@@ -5,7 +5,7 @@ import LocaleSelect from "@/components/shared/LocaleSelect";
 // Types
 import { IPageProps } from "@/types/commonType";
 
-export default function MainLayout(props: IPageProps) {
+export default function MainLayout(props: Pick<IPageProps, "params" | "children">) {
   return (
     <div className="flex min-h-[100vh]">
       <Navibar locale={props.params.locale} />
