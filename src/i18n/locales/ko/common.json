@@ -1,6 +1,7 @@
 {
   "ok": "확인",
   "cancle": "취소",
+  "try_again": "재시도",
   "nav": {
     "title": "Next 샘플",
     "dashboard": "대쉬보드",
@@ -12,5 +13,9 @@
       "contents": "내용...",
       "ok": "확인"
     }
+  },
+  "error_message": {
+    "server_error_title": "문제가 발생하였습니다",
+    "server_error": "서버에서 알 수 없는 에러가 발생하였습니다. 잠시 후에 다시 시도해주세요"
   }
 }

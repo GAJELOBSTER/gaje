@@ -1,6 +1,7 @@
 {
   "ok": "OK",
   "cancle": "Cancle",
+  "try_again": "Try again",
   "nav": {
     "title": "Next Sample",
     "dashboard": "Dashboard",
@@ -11,5 +12,9 @@
       "title": "Sample Modal",
       "contents": "Contents..."
     }
+  },
+  "error_message": {
+    "server_error_title": "Something went wrong!",
+    "server_error": "An error occurred on the server. Please try again later"
   }
 }
