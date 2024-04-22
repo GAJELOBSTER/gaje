@@ -1,7 +1,7 @@
 "use client";
 
+import { useState } from "react";
 import { checkBoxObjectType } from "@/components/common/CheckBox";
-import { useEffect, useState } from "react";
 
 type TestReturnType = [
   /** checkBox 데이터 상태 리스트 */
@@ -11,12 +11,9 @@ type TestReturnType = [
 ];
 
 export default function useCheckBox(data: any[]): Readonly<TestReturnType> {
-  const [checkBoxStateList, setCheckBoxStateList] = useState<checkBoxObjectType>({});
-
-  useEffect(() => {
-    if (!data) return;
-    setCheckBoxStateList(data.reduce((pre, _, index) => ({ ...pre, [index]: false }), {}));
-  }, []);
+  const [checkBoxStateList, setCheckBoxStateList] = useState<checkBoxObjectType>(
+    data.reduce((pre, _, index) => ({ ...pre, [index]: false }), {}),
+  );
 
   return [checkBoxStateList, setCheckBoxStateList];
 }
