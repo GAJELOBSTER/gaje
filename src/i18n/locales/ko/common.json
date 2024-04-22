@@ -16,6 +16,12 @@
   },
   "error_message": {
     "server_error_title": "문제가 발생하였습니다",
-    "server_error": "서버에서 알 수 없는 에러가 발생하였습니다. 잠시 후에 다시 시도해주세요"
+    "server_error": "서버에서 알 수 없는 에러가 발생하였습니다. 잠시 후에 다시 시도해주세요",
+    "fail_login": "로그인 실패",
+    "password_rule_error": "비밀번호 형식이 올바르지 않습니다",
+    "password_rule_error_helpertext": "비밀번호는 8-32자여야 하며, 적어도 하나의 영문자, 하나의 숫자, 하나의 특수문자를 포함해야 합니다",
+    "invalid_login": "로그인 정보가 올바르지 않습니다",
+    "required_id": "아이디를 입력해 주세요",
+    "required_password": "비밀번호를 입력해 주세요"
   }
 }

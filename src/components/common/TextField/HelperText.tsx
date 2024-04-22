@@ -16,7 +16,7 @@ function HelperText(props: ITextFieldProps) {
       className={`
         ${props.error ? "text-negative-500" : "text-neutral-400"}
         ${helperTextStyle[props.size]}
-        flex h-5 items-center gap-2
+        flex items-center gap-2
       `}
     >
       {props.error && <ErrorOn />}
