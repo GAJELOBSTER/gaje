@@ -6,10 +6,12 @@
 
 - Next.js - 14.1.0
 - Node.js - 18
-- Recoil
+- Zustand
 - Tailwindcss
 - Typescript
 - Docker
+- Storybook
+- Openapi-generator
 
 ## 폴더 구조
 
@@ -20,13 +22,21 @@
 │   ├── deploy                   # 프로덕션용 도커 이미지 생성 스크립트
 │   └── local                    # 개발환경용 도커 이미지 생성 스크립트
 ├── src                       # 소스 코드
-│   ├── app                      # 라우팅되는 페이지 (App Router)
+│   └── app                      # 라우팅되는 페이지 (App Router)
+│       ├── (server)                # Server Actions
+│       └── [locale]                # 다국어 라우팅 페이지
 │   ├── assets                   # public에 넣지 않는 정적 자원
 │   ├── components               # 컴포넌트
-│   ├── libs                     # 라이브러리, util 함수, data, provider
-│   ├── recoil                   # 상태관리
+│   ├── fetch                    # 패치 함수
+│   ├── hooks                    # 리액트 커스텀 훅
+│   ├── i18n                     # 다국어
+│   ├── libs                     # 라이브러리, util 함수, data
+│   ├── store                    # 상태관리
+│   ├── stories                  # 스토리북
 │   ├── styles                   # 스타일
 │   └── types                    # 데이터 타입
+│       ├── oag                     # openapi-generator로 생성한 타입
+│       └── state                   # 상태관리에서 사용하는 타입
 │
 ├── ecosystem.config.js       # pm2 설정
 ├── docker-compose.yml        # 개발 환경 도커 실행
@@ -154,7 +164,7 @@
 
   1. 도커 실행
 
-  2. 개발 환경 실행
+  2. 도커 컨테이너 로컬 환경으로 실행
 
      ```
      sh run.sh
@@ -173,7 +183,7 @@
 
   1. 도커 실행
 
-  2. 배포 환경 실행
+  2. 도커 컨테이너 배포 환경으로 실행
 
      ```
      sh deploy.sh
@@ -217,4 +227,26 @@ Options:
 
 ```
 docker exec -it [컨테이너명] /bin/sh
+```
+
+## OpenAPI Generator
+
+> OAS로 작성된 문서를 기반으로 API 요청, 응답에 사용되는 데이터의 TS 타입 자동 생성
+
+> 서버에서 OAS 기반의 문서를 작성해준 경우 사용 가능
+
+### OpenAPI Generator 생성
+
+```sh
+# OAS 파일 경로에 맞게 파일 내용 수정하여 사용
+sh oag.sh
+```
+
+```
+Options:
+  -rm: 컨테이너 종료 시 자동 삭제
+  -v: [호스트 경로]:[컨테이너 내부 경로]
+  -i: Input으로 들어올 OAS 파일 경로
+  -g: generator 지정
+  -o: Output 경로 지정(컨테이너 내부)
 ```
