@@ -10,8 +10,8 @@ type InputHookReturnType = {
   onChange: (e: InputChangeType) => void;
 };
 
-export default function useInput(initValue = "", rule?: (value: string) => boolean): InputHookReturnType {
-  const [value, setValue] = useState<string>(initValue);
+export default function useInput(initValue?: string, rule?: (value: string) => boolean): InputHookReturnType {
+  const [value, setValue] = useState<string>(initValue || "");
 
   const error = useMemo(() => (rule ? !rule(value) : false), [value]);
 

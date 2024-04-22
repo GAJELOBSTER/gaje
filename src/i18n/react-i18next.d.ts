@@ -8,5 +8,6 @@ declare module "i18next" {
       common: typeof common;
       page: typeof page;
     };
+    contextSeparator: "-";
   }
 }

@@ -6,7 +6,7 @@ import Backend from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 
 export async function useTranslation<T extends keyof I18nResourceType>(
-  locale: I18nLocaleType,
+  locale: I18nLocaleType | undefined,
   namespaces: T | typeof i18nNamespaces,
   i18nInstance?: i18n,
   resources?: any,
@@ -24,7 +24,7 @@ export async function useTranslation<T extends keyof I18nResourceType>(
   }
 
   await i18nInstance.init({
-    lng: locale,
+    lng: locale || i18nConfig.defaultLocale,
     resources,
     fallbackLng: i18nConfig.defaultLocale,
     supportedLngs: i18nConfig.locales,
