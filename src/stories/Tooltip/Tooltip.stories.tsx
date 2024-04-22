@@ -24,7 +24,7 @@ const meta = {
     arrowPosition: 15,
   },
   argTypes: {
-    color: { control: "select" },
+    color: { control: "select", options: ["dark", "light", "positive", "negative", "warning"] },
     arrowDirection: { control: "select", options: ["top", "left", "bottom", "right"] },
   },
 } satisfies Meta<ITooltipStory>;
