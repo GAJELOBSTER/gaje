@@ -12,7 +12,7 @@ export interface IDropDownSelectedValueProps {
 }
 
 export function DropDownSelectedValue({ props, category, dropDownOpen, selectedText }: IDropDownSelectedValueProps) {
-  const selectedValueText = selectedText ?? props.checkedValue;
+  const selectedValueText = selectedText ?? props.checkedData.value;
 
   const dropDownDefaultSize: Record<DropDownSizeType, string> = {
     large: "h-10 px-5 py-4 typo-body2-m",
@@ -38,7 +38,7 @@ export function DropDownSelectedValue({ props, category, dropDownOpen, selectedT
         ${props.readonly && "!hover:outline-neutral-100 !cursor-no-drop"}
         ${props.error && "!hover:outline-negative-500 !bg-negative-50 !outline-negative-500"}
         ${dropDownOpen && (props.error ? "outline-2 !outline-negative-500" : "outline-2 !outline-neutral-500")}
-        !${props.backgroundClassName} cn-between cursor-pointer rounded-3 bg-neutral-50 outline outline-1 outline-neutral-100 hover:outline-neutral-500
+        ${props.backgroundClassName ? props.backgroundClassName : "bg-neutral-50"} cn-between cursor-pointer rounded-3 outline outline-1 outline-neutral-100 hover:outline-neutral-500
       `}
     >
       <div className="flex-auto">
@@ -57,7 +57,7 @@ export function DropDownSelectedValue({ props, category, dropDownOpen, selectedT
                 text-neutral-800
               `}
         >
-          {selectedValueText !== "" ? selectedValueText : props.placeHolder ? props.placeHolder : "Value"}
+          {selectedValueText !== "" ? selectedValueText : props.placeHolder ? props.placeHolder : ""}
         </div>
       </div>
 

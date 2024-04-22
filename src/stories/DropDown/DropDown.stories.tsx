@@ -30,7 +30,12 @@ const DROPBOX_DATA = new Array(10)
   .map((_, index) => ({ index: index + 1, value: `Option ${index + 1}`, isDisabled: index === 2 ? true : false }));
 
 const DropBoxHooks = (args: IDropDownProps) => {
-  const [selectedOption, setSelectedOption] = useState<string>("");
+  type CheckedDataType = {
+    index: number;
+    value: string;
+    isDisabled: boolean;
+  };
+  const [checkedData, setCheckedData] = useState<CheckedDataType>(DROPBOX_DATA[0]);
 
   return (
     <DropDown
@@ -38,8 +43,8 @@ const DropBoxHooks = (args: IDropDownProps) => {
       label="Label"
       width={DROPBOX_WIDTH}
       data={DROPBOX_DATA}
-      checkedValue={selectedOption}
-      setCheckedValue={setSelectedOption}
+      checkedData={checkedData}
+      setCheckedData={setCheckedData}
     />
   );
 };

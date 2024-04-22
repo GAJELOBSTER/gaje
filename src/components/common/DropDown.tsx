@@ -18,6 +18,8 @@ export interface IDropDownProps {
   backgroundClassName?: string;
   /** readonly 여부 */
   readonly?: boolean;
+  /** 필수 값 여부 */
+  required?: boolean;
   /** 에러 여부 */
   error?: boolean;
   /** 드롭다운 사이즈, 디자인 시스템(피그마 컨벤션) */
@@ -37,9 +39,9 @@ export interface IDropDownProps {
   /** 드롭다운 데이터 */
   data: any[];
   /** 선택된 드롭다운 상태값 -> const [sample, setSample] = useState<string>("") */
-  checkedValue: string;
+  checkedData: { [key: string]: any } & { value: string };
   /** 선택된 드롭다운 상태값 업데이트 -> const [sample, setSample] = useState<string>("") */
-  setCheckedValue: React.Dispatch<React.SetStateAction<string>>;
+  setCheckedData: React.Dispatch<React.SetStateAction<any & { value: string }>>;
 }
 
 export default function DropDown({ labelPosition = "vertical", category = "default", ...props }: IDropDownProps) {
@@ -90,7 +92,7 @@ export default function DropDown({ labelPosition = "vertical", category = "defau
             <div
               key={data.index ?? index}
               className={`
-                  ${props.checkedValue === data.value && "bg-neutral-100"} 
+                  ${props.checkedData.value === data.value && "bg-neutral-100"}
                   ${data.isDisabled ? "cursor-no-drop text-neutral-200" : "cursor-pointer text-neutral-800 hover:bg-neutral-50"}
                   typo-body2-m flex h-10 items-center px-5
                 `}
@@ -98,7 +100,7 @@ export default function DropDown({ labelPosition = "vertical", category = "defau
                 event.stopPropagation();
 
                 if (!data.isDisabled) {
-                  props.setCheckedValue(data.value);
+                  props.setCheckedData(data);
                   setDropDownOpen(false);
                 }
               }}
