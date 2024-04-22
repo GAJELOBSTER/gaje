@@ -15,6 +15,7 @@ import ShowPassword from "@/assets/svg/ShowPassword";
 import Btn from "@/components/common/Btn";
 import TextField from "@/components/common/TextField";
 import LocaleSelect from "@/components/shared/LocaleSelect";
+import Loader from "@/components/common/Loader";
 
 // Hooks
 import useInput from "@/hooks/useInput";
@@ -27,15 +28,23 @@ export default function LoginForm() {
   const { t } = useTranslation("page");
 
   const [isShow, setIsShow] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") handleClick();
   };
 
-  const handleClick = async () => router.push("/main/dashboard");
+  const handleClick = async () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      router.push("/main/dashboard");
+      setIsLoading(false);
+    }, 1000);
+  };
 
   return (
     <div className="relative flex-col">
+      {isLoading && <Loader />}
       <LocaleSelect className="absolute right-0 top-0" />
       <div className="typo-title1-sb cn-center text-neutral-600">{t("login.title")}</div>
       <div className="typo-body2-sb mt-[60px] w-[400px] text-neutral-400">
