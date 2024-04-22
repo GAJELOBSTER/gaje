@@ -1,10 +1,14 @@
 // Next
-import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 import { i18nRouter } from "next-i18n-router";
 import i18nConfig from "@/i18n/i18nConfig";
 
-import { healthCheck, logoutOnTokenExpiration, reissueAccessToken, isSuccessResponse } from "@/libs/utils";
+// Fetch
+import { AuthFetch } from "@/fetch/method/authFetch";
+
+// Libs
+import { isSuccessStatus } from "@/libs/utils";
+import { logoutOnTokenExpiration, getCookieData } from "@/libs/serverUtils";
 
 const checkPathname = (request: NextRequest, pathname: string) => {
   if (request.nextUrl.pathname.startsWith(`/${pathname}`)) return true;
@@ -14,15 +18,16 @@ const checkPathname = (request: NextRequest, pathname: string) => {
 export async function middleware(request: NextRequest) {
   // 인증이 필요한 페이지 경로 설정
   if (checkPathname(request, "admin")) {
-    const accessToken = cookies().get("accessToken")?.value;
-    const refreshToken = cookies().get("refreshToken")?.value;
+    const cookieData = getCookieData();
+    const accessToken = cookieData.accessToken;
+    const refreshToken = cookieData.refreshToken;
     if (!accessToken || !refreshToken) return logoutOnTokenExpiration();
 
-    const healthCheckResponse = await healthCheck(accessToken);
-    if (isSuccessResponse(healthCheckResponse.status)) return i18nRouter(request, i18nConfig);
+    const healthCheckResponse = await AuthFetch.healthCheck(accessToken);
+    if (isSuccessStatus(healthCheckResponse.status)) return i18nRouter(request, i18nConfig);
 
-    const reissueResponse = await reissueAccessToken(refreshToken);
-    if (!isSuccessResponse(reissueResponse.status)) return logoutOnTokenExpiration();
+    const reissueResponse = await AuthFetch.reissueAccessToken(refreshToken);
+    if (!isSuccessStatus(reissueResponse.status)) return logoutOnTokenExpiration();
 
     const reissueResult = await reissueResponse.json();
     const newAccessToken = reissueResult.accessToken;

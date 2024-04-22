@@ -1,19 +1,26 @@
 "use server";
 
 // Next
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-// Libs
-import { isSuccessResponse, logoutOnTokenExpiration, reissueAccessToken } from "@/libs/utils";
+// Fetch
+import { AuthFetch } from "@/fetch/method/authFetch";
 
-export default async function serverFetch(url: string, options: RequestInit) {
+// Libs
+import { isSuccessStatus } from "@/libs/utils";
+import { logoutOnTokenExpiration, getCookieData } from "@/libs/serverUtils";
+
+// Types
+import { IFetchOption } from "@/types/commonType";
+
+export default async function serverFetch(url: string, options: IFetchOption) {
   const { method, body } = options;
 
   const baseURL = `${process.env.API_URL}/api/${process.env.API_VERSION}`;
   const fetchURL = `${baseURL}${url}`;
-  const accessToken = cookies().get("accessToken")?.value;
-  const refreshToken = cookies().get("refreshToken")?.value;
+  const cookieData = getCookieData();
+  const accessToken = cookieData.accessToken;
+  const refreshToken = cookieData.refreshToken;
 
   const requestOptions: RequestInit = {
     method: `${method}`,
@@ -33,9 +40,9 @@ export default async function serverFetch(url: string, options: RequestInit) {
 
   // Access Token 만료 시
   if (originFetchResponse.status === 401) {
-    const reissueResponse = await reissueAccessToken(refreshToken);
+    const reissueResponse = await AuthFetch.reissueAccessToken(refreshToken);
     const reissueResult = await reissueResponse.json();
-    if (!isSuccessResponse(reissueResponse.status)) return logoutOnTokenExpiration();
+    if (!isSuccessStatus(reissueResponse.status)) return logoutOnTokenExpiration();
 
     const newAccessToken = reissueResult.accessToken;
     const reFetchResponse: any = await fetch(fetchURL, {
