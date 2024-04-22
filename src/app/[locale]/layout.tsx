@@ -4,8 +4,8 @@ import { useTranslation } from "@/i18n";
 import { i18nNamespaces } from "@/i18n/i18nConfig";
 import TranslationsProvider from "@/i18n/TranslationsProvider";
 
-// Recoil
-import RecoilRootProvider from "@/recoil/RecoilRootProvider";
+// Components
+import AlertModal from "@/components/common/AlertModal";
 
 // Styles
 import "@/styles/globals.css";
@@ -24,7 +24,8 @@ export default async function RootLayout(props: Pick<IPageProps, "params" | "chi
     <html lang={props.params.locale}>
       <body>
         <TranslationsProvider locale={props.params.locale} resources={resources} namespaces={i18nNamespaces}>
-          <RecoilRootProvider>{props.children}</RecoilRootProvider>
+          <AlertModal />
+          {props.children}
         </TranslationsProvider>
         <div id="modal"></div>
       </body>

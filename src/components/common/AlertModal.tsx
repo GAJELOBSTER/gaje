@@ -7,38 +7,38 @@ import { useTranslation } from "react-i18next";
 import Modal from "@/components/common/Modal";
 import Btn from "@/components/common/Btn";
 
-type SubBtnType = {
+// Store
+import { useBoundStore } from "@/store";
+
+export type SubBtnType = {
   text: string;
   onClick: () => void;
 };
-export interface IAlertModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  contents: string;
-  subBtn?: SubBtnType;
-}
 
-export default function AlertModal(props: IAlertModalProps) {
-  const { t } = useTranslation("common");
+export default function AlertModal() {
+  const { t: ct } = useTranslation("common");
+  const isOpen = useBoundStore((state) => state.isOpenAlertModal);
+  const onClose = useBoundStore((state) => state.closeAlertModal);
+  const alertData = useBoundStore((state) => state.alertData);
+
   return (
     <>
-      <Modal isOpen={props.isOpen} showCloseBtn size="small" onClose={props.onClose}>
-        <div className="cn-modal-header">{props.title}</div>
-        <div className="cn-modal-body whitespace-pre-line">{props.contents}</div>
+      <Modal isOpen={isOpen} showCloseBtn size="small" onClose={onClose}>
+        <div className="cn-modal-header">{alertData.title}</div>
+        <div className="cn-modal-body whitespace-pre-line">{alertData.contents}</div>
         <div className="word cn-modal-footer">
-          {props.subBtn ? (
+          {alertData.subBtn ? (
             <div className="flex gap-3">
-              <Btn category="secondary" outline size="large" width={"100%"} onClick={props.onClose}>
-                {t("cancle")}
+              <Btn category="secondary" outline size="large" width={"100%"} onClick={onClose}>
+                {ct("cancle")}
               </Btn>
-              <Btn category="primary" size="large" width={"100%"} onClick={props.subBtn.onClick}>
-                {props.subBtn.text || t("ok")}
+              <Btn category="primary" size="large" width={"100%"} onClick={alertData.subBtn.onClick}>
+                {alertData.subBtn.text || ct("ok")}
               </Btn>
             </div>
           ) : (
-            <Btn category="primary" size="large" width={"100%"} onClick={props.onClose}>
-              {t("ok")}
+            <Btn category="primary" size="large" width={"100%"} onClick={onClose}>
+              {ct("ok")}
             </Btn>
           )}
         </div>
