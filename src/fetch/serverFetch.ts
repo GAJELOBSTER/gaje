@@ -45,13 +45,13 @@ export default async function serverFetch(url: string, options: IFetchOption) {
     if (!isSuccessStatus(reissueResponse.status)) return logoutOnTokenExpiration();
 
     const newAccessToken = reissueResult.accessToken;
-    const reFetchResponse: any = await fetch(fetchURL, {
+    const reFetchResponse = await fetch(fetchURL, {
       ...requestOptions,
       headers: { ...requestOptions.headers, Authorization: `Bearer ${newAccessToken}` },
     });
     const reFetchResult = await reFetchResponse.json();
 
-    const nextResponse = NextResponse.json(reFetchResult, { status: originFetchResponse.status });
+    const nextResponse = NextResponse.json(reFetchResult, { status: reFetchResponse.status });
     nextResponse.cookies.set("accessToken", newAccessToken);
     return nextResponse;
   }
