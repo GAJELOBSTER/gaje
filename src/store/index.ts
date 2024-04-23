@@ -6,6 +6,6 @@ import { alertSlice } from "@/store/slice/alertSlice";
 // Types
 import { AlertSliceType } from "@/types/state/alertType";
 
-export const useBoundStore = create<AlertSliceType>((...a) => ({
+export const useStore = create<AlertSliceType>((...a) => ({
   ...alertSlice(...a),
 }));

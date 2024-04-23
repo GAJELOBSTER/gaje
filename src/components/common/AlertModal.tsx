@@ -8,7 +8,7 @@ import Modal from "@/components/common/Modal";
 import Btn from "@/components/common/Btn";
 
 // Store
-import { useBoundStore } from "@/store";
+import { useStore } from "@/store";
 
 export type SubBtnType = {
   text: string;
@@ -17,9 +17,9 @@ export type SubBtnType = {
 
 export default function AlertModal() {
   const { t: ct } = useTranslation("common");
-  const isOpen = useBoundStore((state) => state.isOpenAlertModal);
-  const onClose = useBoundStore((state) => state.closeAlertModal);
-  const alertData = useBoundStore((state) => state.alertData);
+  const isOpen = useStore((state) => state.isOpenAlertModal);
+  const onClose = useStore((state) => state.closeAlertModal);
+  const alertData = useStore((state) => state.alertData);
 
   return (
     <>

@@ -1,11 +1,11 @@
 "use client";
 
 import { SubBtnType } from "@/components/common/AlertModal";
-import { useBoundStore } from "@/store";
+import { useStore } from "@/store";
 
 export default function useAlert(subBtn?: SubBtnType) {
-  const open = useBoundStore((state) => state.openAlertModal);
-  const close = useBoundStore((state) => state.closeAlertModal);
+  const open = useStore((state) => state.openAlertModal);
+  const close = useStore((state) => state.closeAlertModal);
 
   const closeAlert = () => close();
   const openAlert = (title: string, contents: string) => open(title, contents, subBtn);
