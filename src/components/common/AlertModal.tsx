@@ -30,15 +30,15 @@ export default function AlertModal() {
           {alertData.subBtn ? (
             <div className="flex gap-3">
               <Btn category="secondary" outline size="large" width={"100%"} onClick={onClose}>
-                {ct("cancle")}
+                {ct("modal.cancle")}
               </Btn>
               <Btn category="primary" size="large" width={"100%"} onClick={alertData.subBtn.onClick}>
-                {alertData.subBtn.text || ct("ok")}
+                {alertData.subBtn.text || ct("modal.ok")}
               </Btn>
             </div>
           ) : (
             <Btn category="primary" size="large" width={"100%"} onClick={onClose}>
-              {ct("ok")}
+              {ct("modal.ok")}
             </Btn>
           )}
         </div>

@@ -250,3 +250,48 @@ Options:
   -g: generator 지정
   -o: Output 경로 지정(컨테이너 내부)
 ```
+
+## i18n 다국어 설정
+
+```sh
+# 기본 언어: "ko"
+# 지원하는 언어 초기 값: "ko", "en"
+
+└── locales
+    └── ko                  # 언어 -> [language]
+        ├── common.json        # 공통적으로 사용되는 텍스트  -> [filename].json
+        └── page.json          # 각 페이지에 사용되는 텍스트 -> [filename].json
+
+# .xlsx 시트명 => [language]_[filname]
+```
+
+### .json 파일로 .xlsx 파일을 생성하여 공유하는 방법
+
+1. .json 파일 위치
+
+   - src/i18n/locales/[language]/[filename].json
+
+2. .xlsx 파일 생성
+
+   ```
+   npm run xlsx:i18n
+   ```
+
+3. 생성된 .xlsx 위치
+   - src/i18n/xlsx/language.xlsx
+
+### .xlsx 파일로 i18n용 .json 파일을 생성하는 방법
+
+1. .xlsx 파일 위치
+
+   - src/i18n/xlsx/language.xlsx
+
+2. .xlsx으로 .json 생성
+
+   ```
+   npm run json:i18n
+   ```
+
+3. 생성된 .json 위치
+
+   - src/i18n/locales/[language]/[filename].json

@@ -15,7 +15,7 @@ export default function Error({ reset }: IErrorProps) {
       <div className="typo-title1-sb">{ct("error_message.server_error_title")}</div>
       <div>{ct("error_message.server_error")}</div>
       <Btn width={100} onClick={() => reset()}>
-        {ct("try_again")}
+        {ct("error_message.try_again")}
       </Btn>
     </main>
   );

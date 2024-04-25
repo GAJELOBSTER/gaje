@@ -35,7 +35,7 @@ export default function SampleModal(props: IModalProps) {
         <div className="cn-modal-body">{ct("modal.sample.contents")}</div>
         <div className="cn-modal-footer">
           <Btn category="primary" size="large" width={"100%"} onClick={onClose}>
-            {ct("ok")}
+            {ct("modal.ok")}
           </Btn>
         </div>
       </Modal>
