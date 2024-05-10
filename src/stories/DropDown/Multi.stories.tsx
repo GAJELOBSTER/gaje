@@ -30,7 +30,7 @@ const DROPBOX_DATA = new Array(10)
   .map((_, index) => ({ index: index + 1, value: `Option ${index + 1}`, isDisabled: index === 2 ? true : false }));
 
 const MultiDropDownHooks = (args: IMultiDropDownProps) => {
-  const [checkBoxStateList, setCheckBoxStateList] = useCheckBox(DROPBOX_DATA);
+  const { checkBoxStateList, setCheckBoxStateList } = useCheckBox(DROPBOX_DATA);
 
   return (
     <MultiDropDown

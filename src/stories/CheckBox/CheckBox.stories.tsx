@@ -23,7 +23,7 @@ const CHECKBOX_DATA = [
 ];
 
 const CheckBoxHooks = ({ args, vertical }: { args: any; vertical?: boolean }) => {
-  const [checkBoxStateList, setCheckBoxStateList] = useCheckBox(CHECKBOX_DATA);
+  const { checkBoxStateList, setCheckBoxStateList } = useCheckBox(CHECKBOX_DATA);
 
   return (
     <div className={`${vertical && "flex-col"} flex items-start`}>
