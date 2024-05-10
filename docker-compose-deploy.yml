@@ -1,10 +1,10 @@
 version: "3.1"
 services:
-  nextjs:
+  nextjs-frontend:
     build:
       context: ./
       dockerfile: ./docker/deploy/Dockerfile
-    container_name: nextjs-container
+    container_name: nextjs-frontend
     ports:
       - "3000:3000"
     volumes:

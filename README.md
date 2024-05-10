@@ -72,8 +72,12 @@
   ```yml
   ### .env.*
 
+  # 서버 환경 변수
   API_VERSION=v1
-  API_URL=localhost:3000
+  API_URL=http://localhost:3300
+
+  # 클라이언트 환경 변수 (접두사 'NEXT_PUBLIC_' 필요)
+  NEXT_PUBLIC_NEXT_SERVER=http://localhost:3000
   ```
 
 ### 환경변수 추가 및 포트 변경 필요 시
@@ -86,7 +90,8 @@
      ### .env.*
 
      API_VERSION=v1
-     API_URL=localhost:3000
+     API_URL=http://localhost:3300
+     NEXT_PUBLIC_NEXT_SERVER=http://localhost:3000
      NEW_ENV=sample # 추가된 환경변수
      ```
 
@@ -100,6 +105,7 @@
      environment:
        - API_VERSION=${API_VERSION}
        - API_URL=${API_URL}
+       - NEXT_PUBLIC_NEXT_SERVER=${NEXT_PUBLIC_NEXT_SERVER}
        - NEW_ENV=${NEW_ENV} # 추가된 환경변수
      ```
 
@@ -112,7 +118,7 @@
     ### docker-compose.yml
     ### docker-compose-deploy.yml
 
-    # 기본 설정
+    # 기본 설정 예시
     ports:
       - "3000:3000" # {호스트 포트}:{컨테이너 내부 포트}
 
@@ -167,14 +173,14 @@
   2. 도커 컨테이너 로컬 환경으로 실행
 
      ```
-     sh run.sh
+     npm run dev:docker
      ```
 
   3. 종료 시
 
      ```
      ctrl + c
-     sh down.sh
+     npm run down:local
      ```
 
 ### 배포
@@ -203,12 +209,22 @@
 
 ### 주의 사항
 
-> 도커 환경에서 코드 수정 시 호스트 환경에는 npm 패키지들이 설치되어있지 않기 때문에 도커 환경 내부에서 코드 에디터를 실행해야 함
+1. 도커 환경에서 코드 수정 시 호스트 환경에는 npm 패키지들이 설치되어있지 않기 때문에 도커 환경 내부에서 코드 에디터를 실행
 
-```sh
-# 예시) VSCode에서 컨테이너 내부 환경으로 에디터 실행하는 법
-VSCode -> extensions -> Remote SSH -> 개발 컨테이너 -> 컨테이너 내부 환경의 프로젝트 폴더 열기
-```
+   ```sh
+   # 예시) VSCode에서 컨테이너 내부 환경으로 에디터 실행하는 법
+   VSCode -> extensions -> Remote SSH -> 개발 컨테이너 -> 컨테이너 내부 환경의 프로젝트 폴더 열기
+   ```
+
+2. 환경변수 변경 시 도커를 종료하고 다시 실행
+
+   ```sh
+   # 실행중인 도커 컨테이너 종료
+   sh down.sh
+
+   # 변경된 환경변수로 도커 컨테이너 실행
+   sh deploy.sh
+   ```
 
 ## Docker
 
