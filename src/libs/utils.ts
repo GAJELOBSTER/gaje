@@ -19,3 +19,11 @@ export const convertQueryString = (query: IPaginationQuery) => {
   if (query.orderBy) querystring += `&orderBy=${query.orderBy}`;
   return querystring;
 };
+
+export const getJson = (str: string) => {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+};

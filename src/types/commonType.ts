@@ -1,7 +1,13 @@
 import { I18nLocaleType } from "@/i18n/i18nConfig";
 
-export type SearchParamsType = Record<string, string>;
-
+export type SearchParamsType = {
+  page: number;
+  size: number;
+  start_date?: string;
+  end_date?: string;
+  orderBy?: string;
+  order?: "asc" | "desc";
+};
 export interface ILocaleProps {
   locale: I18nLocaleType;
 }
@@ -36,3 +42,12 @@ export interface IFetchOption extends RequestInit {
   method: "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
   body?: any;
 }
+
+// API에 맞게 변경
+type UserType = any;
+
+export type CookieDataType = {
+  accessToken: string | undefined;
+  refreshToken?: string | undefined;
+  userInfo: UserType;
+};

@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const baseURL = `${process.env.API_URL}/api/${process.env.API_VERSION}`;
-    const response = await fetch(`${baseURL}/auth/admin/signin`, {
+    const response = await fetch(`${baseURL}/auth/signin/admin`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -16,8 +16,10 @@ export async function POST(request: NextRequest) {
 
     const result = await response.json();
 
+    cookies().set("userInfo", JSON.stringify(result.data));
     cookies().set("accessToken", result.accessToken);
     cookies().set("refreshToken", result.refreshToken, { httpOnly: true });
+
     return NextResponse.json(result, { status: response.status });
   } catch (error) {
     return NextResponse.error();
