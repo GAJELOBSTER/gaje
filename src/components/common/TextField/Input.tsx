@@ -38,6 +38,7 @@ const Input = forwardRef(function Input({ props, setIsFocus }: IInputProps, ref:
         onKeyDown={props.onKeyDown}
         onClick={(e) => e.stopPropagation()}
         onFocus={() => setIsFocus(true)}
+        autoComplete="one-time-code"
       />
       {props.endIcon && <IconContainer {...props}>{props.endIcon}</IconContainer>}
     </div>
