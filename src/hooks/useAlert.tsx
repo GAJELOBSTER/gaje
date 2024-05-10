@@ -8,7 +8,7 @@ export default function useAlert(subBtn?: SubBtnType) {
   const close = useStore((state) => state.closeAlertModal);
 
   const closeAlert = () => close();
-  const openAlert = (title: string, contents: string) => open(title, contents, subBtn);
+  const openAlert = (title: string, contents: string | React.ReactNode) => open(title, contents, subBtn);
 
   return {
     openAlert,

@@ -35,7 +35,7 @@ const DropBoxHooks = (args: IDropDownProps) => {
     value: string;
     isDisabled: boolean;
   };
-  const [checkedData, setCheckedData] = useState<CheckedDataType>(DROPBOX_DATA[0]);
+  const [checkedData, setCheckedData] = useState<CheckedDataType | { value: string }>({ value: "" });
 
   return (
     <DropDown

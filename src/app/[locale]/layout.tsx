@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { useTranslation } from "@/i18n";
 import { i18nNamespaces } from "@/i18n/i18nConfig";
 import TranslationsProvider from "@/i18n/TranslationsProvider";
+import { CookiesProvider } from "next-client-cookies/server";
 
 // Components
 import AlertModal from "@/components/common/AlertModal";
@@ -23,10 +24,12 @@ export default async function RootLayout(props: Pick<IPageProps, "params" | "chi
   return (
     <html lang={props.params.locale}>
       <body>
-        <TranslationsProvider locale={props.params.locale} resources={resources} namespaces={i18nNamespaces}>
-          <AlertModal />
-          {props.children}
-        </TranslationsProvider>
+        <CookiesProvider>
+          <TranslationsProvider locale={props.params.locale} resources={resources} namespaces={i18nNamespaces}>
+            <AlertModal />
+            {props.children}
+          </TranslationsProvider>
+        </CookiesProvider>
         <div id="modal"></div>
       </body>
     </html>

@@ -1,4 +1,7 @@
 import { SearchParamsType } from "@/types/commonType";
+import { JwtPayload, jwtDecode } from "jwt-decode";
+
+type JwtTokenType = JwtPayload & { roleId: number };
 
 export const isSuccessStatus = (statusCode: number | undefined) => statusCode === 200 || statusCode === 201;
 
@@ -23,4 +26,16 @@ export const getJson = (str: string) => {
   } catch (e) {
     return false;
   }
+};
+
+export const checkRoleId = (accessToken = "") => {
+  const { roleId } = jwtDecode<JwtTokenType>(accessToken);
+
+  return roleId;
+};
+
+export const checkLowerRole = (accessToken = "", roleLevel: number) => {
+  const roleId = checkRoleId(accessToken);
+
+  return roleId ? roleLevel <= roleId : true;
 };

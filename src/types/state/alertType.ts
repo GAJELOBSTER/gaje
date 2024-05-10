@@ -6,13 +6,13 @@ export type SubBtnType = {
 export type AlertStateType = {
   alertData: {
     title: string;
-    contents: string;
+    contents: string | React.ReactNode;
     subBtn?: SubBtnType;
   };
   isOpenAlertModal: boolean;
 };
 
 export type AlertSliceType = AlertStateType & {
-  openAlertModal: (title: string, contents: string, subBtn?: SubBtnType) => void;
+  openAlertModal: (title: string, contents: string | React.ReactNode, subBtn?: SubBtnType) => void;
   closeAlertModal: () => void;
 };

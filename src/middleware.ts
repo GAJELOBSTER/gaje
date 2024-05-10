@@ -8,7 +8,7 @@ import { AuthFetch } from "@/fetch/method/authFetch";
 
 // Libs
 import { isSuccessStatus } from "@/libs/utils";
-import { logoutOnTokenExpiration, getCookieData } from "@/libs/serverUtils";
+import { getServerCookie, logoutOnTokenExpiration } from "@/libs/serverUtils";
 
 const checkPathname = (request: NextRequest, pathname: string) => {
   if (request.nextUrl.pathname.startsWith(`/${pathname}`)) return true;
@@ -17,11 +17,13 @@ const checkPathname = (request: NextRequest, pathname: string) => {
 
 export async function middleware(request: NextRequest) {
   // 인증이 필요한 페이지 경로 설정
-  if (checkPathname(request, "temp")) {
-    const cookieData = getCookieData();
+  if (checkPathname(request, "admin")) {
+    const cookieData = getServerCookie();
     const accessToken = cookieData.accessToken;
     const refreshToken = cookieData.refreshToken;
-    if (!accessToken || !refreshToken) return logoutOnTokenExpiration();
+    const userInfo = cookieData.userInfo;
+
+    if (!accessToken || !refreshToken || !userInfo) return logoutOnTokenExpiration();
 
     const healthCheckResponse = await AuthFetch.healthCheck(accessToken);
     if (isSuccessStatus(healthCheckResponse.status)) return i18nRouter(request, i18nConfig);

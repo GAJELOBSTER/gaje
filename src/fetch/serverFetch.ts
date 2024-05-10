@@ -8,7 +8,7 @@ import { AuthFetch } from "@/fetch/method/authFetch";
 
 // Libs
 import { isSuccessStatus } from "@/libs/utils";
-import { logoutOnTokenExpiration, getCookieData } from "@/libs/serverUtils";
+import { logoutOnTokenExpiration, getServerCookie } from "@/libs/serverUtils";
 
 // Types
 import { IFetchOption } from "@/types/commonType";
@@ -18,9 +18,11 @@ export default async function serverFetch(url: string, options: IFetchOption) {
 
   const baseURL = `${process.env.API_URL}/api/${process.env.API_VERSION}`;
   const fetchURL = `${baseURL}${url}`;
-  const cookieData = getCookieData();
+
+  const cookieData = getServerCookie();
   const accessToken = cookieData.accessToken;
   const refreshToken = cookieData.refreshToken;
+  const userInfo = cookieData.userInfo;
 
   const requestOptions: RequestInit = {
     method: `${method}`,
@@ -33,7 +35,7 @@ export default async function serverFetch(url: string, options: IFetchOption) {
     },
   };
 
-  if (!accessToken || !refreshToken) return logoutOnTokenExpiration();
+  if (!accessToken || !refreshToken || !userInfo) return logoutOnTokenExpiration();
 
   const originFetchResponse = await fetch(fetchURL, requestOptions);
   const originFetchResult = await originFetchResponse.json();
