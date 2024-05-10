@@ -3,6 +3,9 @@
     "title": "샘플 로그인",
     "login": "로그인"
   },
+  "logout": {
+    "logout": "로그아웃"
+  },
   "dashboard": {
     "title": "대쉬보드 페이지"
   },

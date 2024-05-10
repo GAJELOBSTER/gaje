@@ -24,6 +24,7 @@
     "server_error": "An error occurred on the server. Please try again later",
     "fail_login": "Login Failed",
     "invalid_login": "Invalid username or password",
+    "fail_logout": "Logout Failed",
     "password_rule_error": "Password does not meet the requirements",
     "password_rule_error_helpertext": "Password must be 8-32 characters and contain at least one letter, one number, and one special character",
     "required_id": "Please enter the ID",

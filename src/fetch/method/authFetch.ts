@@ -47,8 +47,23 @@ const logIn = async ({ body }: { body: LoginReqType }) => {
   }
 };
 
+const logOut = async () => {
+  try {
+    return await fetch(`${process.env.NEXT_PUBLIC_NEXT_SERVER}/api/logout`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    return { status: 500, msg: "서버 에러" };
+  }
+};
+
 export const AuthFetch = {
   healthCheck,
   reissueAccessToken,
   logIn,
+  logOut,
 };
