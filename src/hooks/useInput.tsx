@@ -7,6 +7,7 @@ type InputChangeType = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 type InputHookReturnType = {
   value: string;
   error: boolean;
+  init: () => void;
   onChange: (e: InputChangeType) => void;
 };
 
@@ -17,5 +18,7 @@ export default function useInput(initValue?: string, rule?: (value: string) => b
 
   const onChange = (e: InputChangeType) => setValue(() => e.target.value);
 
-  return { value, onChange, error };
+  const init = () => setValue(initValue || "");
+
+  return { value, onChange, init, error };
 }
