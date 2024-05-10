@@ -1,4 +1,4 @@
-import { IPaginationQuery } from "@/types/commonType";
+import { SearchParamsType } from "@/types/commonType";
 
 export const isSuccessStatus = (statusCode: number | undefined) => statusCode === 200 || statusCode === 201;
 
@@ -11,13 +11,10 @@ export const formatDate = (isoDateString: Date) => {
   return formattedDate;
 };
 
-export const convertQueryString = (query: IPaginationQuery) => {
-  let querystring = `page=${query.page}&size=${query.size}`;
-  if (query.searchField) querystring += `&searchField=${query.searchField}`;
-  if (query.searchWord) querystring += `&searchWord=${query.searchWord}`;
-  if (query.order) querystring += `&order=${query.order}`;
-  if (query.orderBy) querystring += `&orderBy=${query.orderBy}`;
-  return querystring;
+export const convertQueryString = (query: SearchParamsType) => {
+  return Object.entries(query)
+    .map(([key, value]) => `${key}=${value}`)
+    .join("&");
 };
 
 export const getJson = (str: string) => {

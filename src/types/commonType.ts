@@ -29,15 +29,6 @@ export interface IModalProps {
   className?: string;
 }
 
-export interface IPaginationQuery {
-  page: number;
-  size: number;
-  searchField?: string;
-  searchWord?: string;
-  orderBy?: string;
-  order?: string;
-}
-
 export interface IFetchOption extends RequestInit {
   method: "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
   body?: any;
