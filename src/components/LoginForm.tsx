@@ -46,17 +46,21 @@ export default function LoginForm() {
   };
 
   const handleClick = async () => {
-    if (!userLoginId.value) return openAlert(ct("error_message.fail_login"), ct("error_message.required_id"));
-    if (!userPassword.value) return openAlert(ct("error_message.fail_login"), ct("error_message.required_password"));
-    if (userPassword.error) return openAlert(ct("error_message.fail_login"), ct("error_message.password_rule_error"));
+    // 로그인 API 요청 하지 않도록 초기 설정
+    return router.push("/main/dashboard");
+
+    const failAlertTitle = ct("error_message.fail_login");
+    if (!userLoginId.value) return openAlert(failAlertTitle, ct("error_message.required_id"));
+    if (!userPassword.value) return openAlert(failAlertTitle, ct("error_message.required_password"));
+    if (userPassword.error) return openAlert(failAlertTitle, ct("error_message.password_rule_error"));
 
     setIsLoading(true);
     const body = { loginId: userLoginId.value, password: userPassword.value };
     const { status } = await AuthFetch.logIn({ body });
     setIsLoading(false);
 
-    if (status === 500) return openAlert(ct("error_message.fail_login"), ct("error_message.server_error"));
-    if (!isSuccessStatus(status)) return openAlert(ct("error_message.fail_login"), ct("error_message.invalid_login"));
+    if (status === 500) return openAlert(failAlertTitle, ct("error_message.server_error"));
+    if (!isSuccessStatus(status)) return openAlert(failAlertTitle, ct("error_message.invalid_login"));
 
     router.push("/main/dashboard");
   };

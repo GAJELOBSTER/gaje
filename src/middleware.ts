@@ -17,7 +17,7 @@ const checkPathname = (request: NextRequest, pathname: string) => {
 
 export async function middleware(request: NextRequest) {
   // 인증이 필요한 페이지 경로 설정
-  if (checkPathname(request, "admin")) {
+  if (checkPathname(request, "temp")) {
     const cookieData = getCookieData();
     const accessToken = cookieData.accessToken;
     const refreshToken = cookieData.refreshToken;
