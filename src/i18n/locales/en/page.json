@@ -1,10 +1,6 @@
 {
   "login": {
     "title": "Sample Login",
-    "id": "ID",
-    "id_placeholder": "Please enter your ID",
-    "password": "Password",
-    "password_placeholder": "Please enter your password",
     "login": "Login"
   },
   "dashboard": {

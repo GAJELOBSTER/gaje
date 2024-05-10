@@ -4,6 +4,12 @@
     "dashboard": "Dashboard",
     "sample": "Sample"
   },
+  "input": {
+    "id": "ID",
+    "id_placeholder": "Please enter your ID",
+    "password": "Password",
+    "password_placeholder": "Please enter your password"
+  },
   "modal": {
     "ok": "OK",
     "cancle": "Cancle",

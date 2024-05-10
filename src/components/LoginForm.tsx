@@ -71,12 +71,12 @@ export default function LoginForm() {
       <LocaleSelect className="absolute right-0 top-0" />
       <div className="typo-title1-sb cn-center text-neutral-600">{t("login.title")}</div>
       <div className="typo-body2-sb mt-[60px] w-[400px] text-neutral-400">
-        <TextField {...userLoginId} label={t("login.id")} placeholder={t("login.id_placeholder")} size="large" />
+        <TextField {...userLoginId} label={ct("input.id")} placeholder={ct("input.id_placeholder")} size="large" />
         <TextField
           {...userPassword}
           className="mt-6"
-          label={t("login.password")}
-          placeholder={t("login.password_placeholder")}
+          label={ct("input.password")}
+          placeholder={ct("input.password_placeholder")}
           size="large"
           type={isShow ? "text" : "password"}
           onKeyDown={handleKeyDown}

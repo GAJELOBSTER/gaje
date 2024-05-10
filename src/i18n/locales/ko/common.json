@@ -4,6 +4,12 @@
     "dashboard": "대쉬보드",
     "sample": "샘플"
   },
+  "input": {
+    "id": "아이디",
+    "password": "비밀번호",
+    "id_placeholder": "아이디를 입력해 주세요",
+    "password_placeholder": "비밀번호를 입력해 주세요"
+  },
   "modal": {
     "ok": "확인",
     "cancle": "취소",
