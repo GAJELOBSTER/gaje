@@ -8,5 +8,5 @@ for env in "${ENV_LIST[@]}"; do
     touch "$target_file"
     echo "API_VERSION=v1" >> "$target_file"
     echo "API_URL=http://localhost:3300" >> "$target_file"
-    echo "\nNEXT_PUBLIC_NEXT_SERVER=http://localhost:3000" >> "$target_file"
+    echo "NEXT_PUBLIC_NEXT_SERVER=http://localhost:3000" >> "$target_file"
 done

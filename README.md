@@ -173,14 +173,14 @@
   2. 도커 컨테이너 로컬 환경으로 실행
 
      ```
-     npm run dev:docker
+     npm run dev:docker-local
      ```
 
   3. 종료 시
 
      ```
      ctrl + c
-     npm run down:local
+     npm run down:docker-local
      ```
 
 ### 배포
