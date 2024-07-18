@@ -1,8 +1,5 @@
 "use client";
 
-// Next
-import { useTranslation } from "react-i18next";
-
 // Components
 import Modal from "@/components/common/Modal";
 import Btn from "@/components/common/Btn";
@@ -16,7 +13,6 @@ export type SubBtnType = {
 };
 
 export default function AlertModal() {
-  const { t: ct } = useTranslation("common");
   const isOpen = useStore((state) => state.isOpenAlertModal);
   const onClose = useStore((state) => state.closeAlertModal);
   const alertData = useStore((state) => state.alertData);
@@ -30,15 +26,15 @@ export default function AlertModal() {
           {alertData.subBtn ? (
             <div className="flex gap-3">
               <Btn category="secondary" outline size="large" width={"100%"} onClick={onClose}>
-                {ct("modal.cancle")}
+                취소
               </Btn>
               <Btn category="primary" size="large" width={"100%"} onClick={alertData.subBtn.onClick}>
-                {alertData.subBtn.text || ct("modal.ok")}
+                {alertData.subBtn.text || "확인"}
               </Btn>
             </div>
           ) : (
             <Btn category="primary" size="large" width={"100%"} onClick={onClose}>
-              {ct("modal.ok")}
+              확인
             </Btn>
           )}
         </div>

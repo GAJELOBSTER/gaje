@@ -5,7 +5,6 @@ import { useState } from "react";
 
 // Next
 import { useRouter } from "next/navigation";
-import { useTranslation } from "react-i18next";
 
 // Assets
 import HidePassword from "@/assets/svg/HidePassword";
@@ -14,7 +13,6 @@ import ShowPassword from "@/assets/svg/ShowPassword";
 // Components
 import Btn from "@/components/common/Btn";
 import TextField from "@/components/common/TextField";
-import LocaleSelect from "@/components/shared/LocaleSelect";
 import Loader from "@/components/common/Loader";
 
 // Fetch
@@ -30,8 +28,6 @@ import { isSuccessStatus } from "@/libs/utils";
 export default function LoginForm() {
   const router = useRouter();
   const { openAlert } = useAlert();
-  const { t } = useTranslation("page");
-  const { t: ct } = useTranslation("common");
 
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,32}$/;
 
@@ -49,18 +45,19 @@ export default function LoginForm() {
     // 로그인 API 요청 하지 않도록 초기 설정
     return router.push("/main/dashboard");
 
-    const failAlertTitle = ct("error_message.fail_login");
-    if (!userLoginId.value) return openAlert(failAlertTitle, ct("error_message.required_id"));
-    if (!userPassword.value) return openAlert(failAlertTitle, ct("error_message.required_password"));
-    if (userPassword.error) return openAlert(failAlertTitle, ct("error_message.password_rule_error"));
+    const failAlertTitle = "로그인 실패";
+    if (!userLoginId.value) return openAlert(failAlertTitle, "아이디를 입력해 주세요");
+    if (!userPassword.value) return openAlert(failAlertTitle, "비밀번호를 입력해 주세요");
+    if (userPassword.error) return openAlert(failAlertTitle, "비밀번호 형식이 올바르지 않습니다");
 
     setIsLoading(true);
     const body = { loginId: userLoginId.value, password: userPassword.value };
     const { status } = await AuthFetch.logIn({ body });
     setIsLoading(false);
 
-    if (status === 500) return openAlert(failAlertTitle, ct("error_message.server_error"));
-    if (!isSuccessStatus(status)) return openAlert(failAlertTitle, ct("error_message.invalid_login"));
+    if (status === 500)
+      return openAlert(failAlertTitle, "서버에서 알 수 없는 에러가 발생하였습니다. 잠시 후에 다시 시도해주세요");
+    if (!isSuccessStatus(status)) return openAlert(failAlertTitle, "로그인 정보가 올바르지 않습니다");
 
     router.push("/main/dashboard");
   };
@@ -68,19 +65,22 @@ export default function LoginForm() {
   return (
     <div className="relative flex-col">
       {isLoading && <Loader />}
-      <LocaleSelect className="absolute right-0 top-0" />
-      <div className="typo-title1-sb cn-center text-neutral-600">{t("login.title")}</div>
+      <div className="typo-title1-sb cn-center text-neutral-600">로그인</div>
       <div className="typo-body2-sb mt-[60px] w-[400px] text-neutral-400">
-        <TextField {...userLoginId} label={ct("input.id")} placeholder={ct("input.id_placeholder")} size="large" />
+        <TextField {...userLoginId} label={"아이디"} placeholder={"아이디를 입력해 주세요"} size="large" />
         <TextField
           {...userPassword}
           className="mt-6"
-          label={ct("input.password")}
-          placeholder={ct("input.password_placeholder")}
+          label={"비밀번호"}
+          placeholder={"비밀번호를 입력해 주세요"}
           size="large"
           type={isShow ? "text" : "password"}
           onKeyDown={handleKeyDown}
-          helperText={userPassword.error ? ct("error_message.password_rule_error_helpertext") : ""}
+          helperText={
+            userPassword.error
+              ? "비밀번호는 8-32자여야 하며, 적어도 하나의 영문자, 하나의 숫자, 하나의 특수문자를 포함해야 합니다"
+              : ""
+          }
           endIcon={
             <div className="cursor-pointer" onClick={() => setIsShow(!isShow)}>
               {isShow ? <ShowPassword /> : <HidePassword />}
@@ -89,7 +89,7 @@ export default function LoginForm() {
         />
         <div className="mt-9">
           <Btn category="primary" size="large" onClick={handleClick} width={"400px"}>
-            {t("login.login")}
+            로그인
           </Btn>
         </div>
       </div>

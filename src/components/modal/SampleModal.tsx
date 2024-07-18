@@ -1,8 +1,5 @@
 "use client";
 
-// Next
-import { useTranslation } from "react-i18next";
-
 // Components
 import Modal from "@/components/common/Modal";
 import Btn from "@/components/common/Btn";
@@ -24,18 +21,17 @@ import { IModalProps } from "@/types/commonType";
 // </SampleModal>;
 
 export default function SampleModal(props: IModalProps) {
-  const { t: ct } = useTranslation("common");
   const { isOpen, closeModal, Trigger } = useModal();
   const onClose = () => (props.onClose ? props.onClose() : closeModal());
 
   return (
     <>
       <Modal isOpen={props.isOpen || isOpen} showCloseBtn size="small" onClose={onClose}>
-        <div className="cn-modal-header">{ct("modal.sample.title")}</div>
-        <div className="cn-modal-body">{ct("modal.sample.contents")}</div>
+        <div className="cn-modal-header">샘플 모달</div>
+        <div className="cn-modal-body">내용...</div>
         <div className="cn-modal-footer">
           <Btn category="primary" size="large" width={"100%"} onClick={onClose}>
-            {ct("modal.ok")}
+            확인
           </Btn>
         </div>
       </Modal>

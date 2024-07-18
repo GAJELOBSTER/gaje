@@ -1,5 +1,3 @@
-import { I18nLocaleType } from "@/i18n/i18nConfig";
-
 export type SearchParamsType = {
   page: number;
   size: number;
@@ -8,13 +6,9 @@ export type SearchParamsType = {
   orderBy?: string;
   order?: "asc" | "desc";
 };
-export interface ILocaleProps {
-  locale: I18nLocaleType;
-}
 
 export interface IPageProps {
   children: React.ReactNode;
-  params: ILocaleProps;
   searchParams: SearchParamsType;
 }
 
@@ -34,11 +28,7 @@ export interface IFetchOption extends RequestInit {
   body?: any;
 }
 
-// API에 맞게 변경
-type UserType = any;
-
 export type CookieDataType = {
   accessToken: string | undefined;
   refreshToken?: string | undefined;
-  userInfo: UserType;
 };

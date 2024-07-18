@@ -1,17 +1,15 @@
-import { I18nResourceType } from "@/i18n/i18nConfig";
-
 type NavListType = {
-  title: I18nResourceType["common"];
+  title: string;
   href: string;
 };
 
 const navList: NavListType[] = [
   {
-    title: "nav.dashboard",
+    title: "대쉬보드",
     href: "/main/dashboard",
   },
   {
-    title: "nav.sample",
+    title: "샘플",
     href: "/main/sample",
   },
 ];
