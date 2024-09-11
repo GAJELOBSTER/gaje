@@ -16,15 +16,20 @@ const addPrefix = (data: any, prefix: string) => {
 const lineHeight = {
   "1": { lineHeight: pxToRem(14) },
   "2": { lineHeight: pxToRem(16) },
-  "3": { lineHeight: pxToRem(20) },
-  "4": { lineHeight: pxToRem(24) },
-  "5": { lineHeight: pxToRem(28) },
-  "6": { lineHeight: pxToRem(32) },
-  "7": { lineHeight: pxToRem(36) },
-  "8": { lineHeight: pxToRem(40) },
-  "9": { lineHeight: pxToRem(48) },
-  "10": { lineHeight: pxToRem(56) },
-  "11": { lineHeight: pxToRem(64) },
+  "3": { lineHeight: pxToRem(18) },
+  "4": { lineHeight: pxToRem(20) },
+  "5": { lineHeight: pxToRem(22) },
+  "6": { lineHeight: pxToRem(24) },
+  "7": { lineHeight: pxToRem(26) },
+  "8": { lineHeight: pxToRem(28) },
+  "9": { lineHeight: pxToRem(32) },
+  "10": { lineHeight: pxToRem(36) },
+  "11": { lineHeight: pxToRem(40) },
+  "12": { lineHeight: pxToRem(48) },
+  "13": { lineHeight: pxToRem(52) },
+  "14": { lineHeight: pxToRem(56) },
+  "15": { lineHeight: pxToRem(64) },
+  "16": { lineHeight: pxToRem(72) },
 };
 
 const fontSize = {
@@ -37,10 +42,11 @@ const fontSize = {
   "7": { fontSize: pxToRem(24) },
   "8": { fontSize: pxToRem(28) },
   "9": { fontSize: pxToRem(32) },
-  "10": { fontSize: pxToRem(40) },
-  "11": { fontSize: pxToRem(48) },
-  "12": { fontSize: pxToRem(52) },
-  "13": { fontSize: pxToRem(56) },
+  "10": { fontSize: pxToRem(36) },
+  "11": { fontSize: pxToRem(40) },
+  "12": { fontSize: pxToRem(48) },
+  "13": { fontSize: pxToRem(52) },
+  "14": { fontSize: pxToRem(56) },
 };
 
 const typo = {
@@ -57,6 +63,20 @@ const typo = {
   "body3-r": apply("font-regular line-height-2 font-size-2"),
   "detail-sb": apply("font-semibold line-height-2 font-size-1"),
   "detail-m": apply("font-medium line-height-2 font-size-1"),
+
+  "display-1": apply("font-size-14 line-height-16"),
+  "display-2": apply("font-size-11 line-height-13"),
+  "title-1": apply("font-size-10 line-height-12"),
+  "title-2": apply("font-size-8 line-height-11"),
+  "title-3": apply("font-size-7 line-height-9"),
+  "heading-1": apply("font-size-6 line-height-8"),
+  "heading-2": apply("font-size-5 line-height-7"),
+  "body-1-normal": apply("font-size-4 line-height-6"),
+  "body-1-reading": apply("font-size-4 line-height-7"),
+  "body-2-normal": apply("font-size-3 line-height-4"),
+  "body-2-reading": apply("font-size-3 line-height-5"),
+  "caption-1": apply("font-size-2 line-height-2"),
+  "caption-2": apply("font-size-1 line-height-1"),
 };
 
 const cn = {

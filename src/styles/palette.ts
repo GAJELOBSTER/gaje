@@ -2,6 +2,10 @@ const palette = {
   black: "#111111",
   white: "#ffffff",
   transparent: "transparent",
+  common: {
+    black: "#000000",
+    white: "#ffffff",
+  },
   purple: {
     50: "#FAF9FF",
     100: "#E6E1FF",
