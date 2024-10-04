@@ -2,6 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { z } from "zod";
 import { CookieDataType } from "@/types/commonType";
 
 export const getCookieData = (): CookieDataType => {
@@ -18,4 +19,9 @@ export const logoutOnTokenExpiration = async () => {
   response.cookies.delete("accessToken");
   response.cookies.delete("refreshToken");
   return response;
+};
+
+export const handleZodError = (error: z.ZodError) => {
+  const { path, message } = error.errors[0];
+  return NextResponse.json({ msg: `${path[0] ? `'${path}': ` : ""}${message}` }, { status: 400 });
 };

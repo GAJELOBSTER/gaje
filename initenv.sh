@@ -1,12 +1,19 @@
 #!/bin/bash
-ENV_LIST=("local" "dev" "stg" "prod")
-SAMPLE_PATH=./env/.env.sample
 
-mkdir -p env
-for env in "${ENV_LIST[@]}"; do
-    target_file="./env/.env.${env}"
-    touch "$target_file"
-    echo "API_VERSION=v1" >> "$target_file"
-    echo "API_URL=http://localhost:3300" >> "$target_file"
-    echo "NEXT_PUBLIC_NEXT_SERVER=http://localhost:3000" >> "$target_file"
-done
+target_file=".env"
+touch "$target_file"
+echo "# Server" >> "$target_file"
+echo "NEXTAUTH_URL=http:localhost:3000" >> "$target_file"
+echo "NEXTAUTH_SECRET=[NEXTAUTH_SECRET]" >> "$target_file"
+echo "GOOGLE_CLIENT_ID=[GOOGLE_CLIENT_ID]" >> "$target_file"
+echo "GOOGLE_CLIENT_SECRET=[GOOGLE_CLIENT_SECRET]" >> "$target_file"
+echo "" >> "$target_file"
+echo "# Client" >> "$target_file"
+echo "NEXT_PUBLIC_NEXT_SERVER=http://localhost:3000" >> "$target_file"
+echo "" >> "$target_file"
+echo "# DB" >> "$target_file"
+echo "POSTGRES_USER=[POSTGRES_USER]" >> "$target_file"
+echo "POSTGRES_PASSWORD=[POSTGRES_PASSWORD]" >> "$target_file"
+echo "POSTGRES_DB=[POSTGRES_DB]" >> "$target_file"
+echo "# 위의 Postgres에 설정한 값 입력 필요" >> "$target_file"
+echo "DATABASE_URL=postgresql://[POSTGRES_USER]:[POSTGRES_PASSWORD]@localhost:5432/[POSTGRES_DB]" >> "$target_file"

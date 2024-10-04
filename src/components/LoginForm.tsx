@@ -1,97 +1,56 @@
 "use client";
 
-// React
-import { useState } from "react";
-
 // Next
-import { useRouter } from "next/navigation";
-
-// Assets
-import HidePassword from "@/assets/svg/HidePassword";
-import ShowPassword from "@/assets/svg/ShowPassword";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 // Components
 import Btn from "@/components/common/Btn";
-import TextField from "@/components/common/TextField";
-import Loader from "@/components/common/Loader";
-
-// Fetch
-import { AuthFetch } from "@/fetch/method/authFetch";
-
-// Hooks
-import useInput from "@/hooks/useInput";
-import useAlert from "@/hooks/useAlert";
-
-// Libs
-import { isSuccessStatus } from "@/libs/utils";
 
 export default function LoginForm() {
-  const router = useRouter();
-  const { openAlert } = useAlert();
-
-  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,32}$/;
-
-  const userLoginId = useInput();
-  const userPassword = useInput("", (value: string) => !value || passwordRegex.test(value));
-
-  const [isShow, setIsShow] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") handleClick();
+  const handleFeed = async () => {
+    // categories: ["일기"];
+    // comments: "https://www.hyungjoo.me/%eb%8f%99%ed%98%81%ec%9d%b4/#respond";
+    // content: content: encoded: content: encodedSnippet: contentSnippet: creator: "hjoo";
+    // dc: creator: "hjoo";
+    // guid: "https://www.hyungjoo.me/?p=10775";
+    // isoDate: "2024-07-01T17:23:31.000Z";
+    // link: "https://www.hyungjoo.me/%eb%8f%99%ed%98%81%ec%9d%b4/";
+    // pubDate: "Mon, 01 Jul 2024 17:23:31 +0000";
+    // title: "동혁이";
+    const url = "https://geminikims.medium.com";
+    // const url = "https://www.youtube.com/@ZeroChoTV";
+    // // "https://www.hyungjoo.me/%ec%b1%85-%eb%b6%88%eb%b3%80%ec%9d%98-%eb%b2%95%ec%b9%99/";
+    const response = await fetch(`/api/rss/${encodeURIComponent(url)}`);
+    const data = await response.json();
+    if (response.ok) {
+      console.log("data", data);
+    } else {
+      console.log("no", data);
+    }
   };
 
   const handleClick = async () => {
-    // 로그인 API 요청 하지 않도록 초기 설정
-    return router.push("/main/dashboard");
-
-    const failAlertTitle = "로그인 실패";
-    if (!userLoginId.value) return openAlert(failAlertTitle, "아이디를 입력해 주세요");
-    if (!userPassword.value) return openAlert(failAlertTitle, "비밀번호를 입력해 주세요");
-    if (userPassword.error) return openAlert(failAlertTitle, "비밀번호 형식이 올바르지 않습니다");
-
-    setIsLoading(true);
-    const body = { loginId: userLoginId.value, password: userPassword.value };
-    const { status } = await AuthFetch.logIn({ body });
-    setIsLoading(false);
-
-    if (status === 500)
-      return openAlert(failAlertTitle, "서버에서 알 수 없는 에러가 발생하였습니다. 잠시 후에 다시 시도해주세요");
-    if (!isSuccessStatus(status)) return openAlert(failAlertTitle, "로그인 정보가 올바르지 않습니다");
-
-    router.push("/main/dashboard");
+    try {
+      await signIn("google", { callbackUrl: "/gaje/dashboard" });
+    } catch (error) {
+      throw new Error(`Login Error: ${error}`);
+    }
   };
 
   return (
-    <div className="relative flex-col">
-      {isLoading && <Loader />}
-      <div className="typo-title1-sb cn-center text-neutral-600">로그인</div>
-      <div className="typo-body2-sb mt-[60px] w-[400px] text-neutral-400">
-        <TextField {...userLoginId} label={"아이디"} placeholder={"아이디를 입력해 주세요"} size="large" />
-        <TextField
-          {...userPassword}
-          className="mt-6"
-          label={"비밀번호"}
-          placeholder={"비밀번호를 입력해 주세요"}
-          size="large"
-          type={isShow ? "text" : "password"}
-          onKeyDown={handleKeyDown}
-          helperText={
-            userPassword.error
-              ? "비밀번호는 8-32자여야 하며, 적어도 하나의 영문자, 하나의 숫자, 하나의 특수문자를 포함해야 합니다"
-              : ""
-          }
-          endIcon={
-            <div className="cursor-pointer" onClick={() => setIsShow(!isShow)}>
-              {isShow ? <ShowPassword /> : <HidePassword />}
-            </div>
-          }
-        />
-        <div className="mt-9">
-          <Btn category="primary" size="large" onClick={handleClick} width={"400px"}>
-            로그인
-          </Btn>
-        </div>
+    <div>
+      <div className="absolute top-2 flex gap-3">
+        <Btn category="primary" outline onClick={handleFeed}>
+          피드 정보 가져오기
+        </Btn>
+      </div>
+      <div
+        className="typo-body2-sb flex w-fit cursor-pointer items-center gap-3 rounded-[32px] bg-black px-8 py-5 text-white"
+        onClick={handleClick}
+      >
+        <Image src={"/google_logo.png"} width={24} height={24} alt=""></Image>
+        구글 계정으로 3초 만에 시작하기
       </div>
     </div>
   );
