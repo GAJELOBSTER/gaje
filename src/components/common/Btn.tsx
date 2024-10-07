@@ -1,7 +1,7 @@
 "use client";
 
 type WidthUnitType = "px" | "%" | "em" | "vh";
-type BtnCategoryType = "primary" | "secondary";
+type BtnCategoryType = "primary" | "secondary" | "text";
 type BtnSizeType = "large" | "medium" | "small";
 
 export interface IButtonProps {
@@ -11,8 +11,8 @@ export interface IButtonProps {
   category?: BtnCategoryType;
   /** 버튼 사이즈, 디자인 시스템(피그마 컨벤션) */
   size?: BtnSizeType;
-  /** 버튼 아웃라인 유무 */
-  outline?: boolean;
+  /** 버튼 아웃라인 유무 및 text타입 색 */
+  variant?: boolean;
   /** 버튼 왼쪽 아이콘 */
   startIcon?: React.ReactNode;
   /** 버튼 오른쪽 아이콘 */
@@ -29,26 +29,31 @@ export default function Btn({ category = "primary", size = "medium", ...props }:
   const btnWidth = props.width ? (typeof props.width === "string" ? props.width : `${props.width}px`) : "100%";
 
   const btnCategory: Record<BtnCategoryType, string> = {
-    primary: "text-white bg-brand-500 [&:not(:disabled)]:hover:bg-brand-600",
-    secondary: "text-white bg-neutral-500 [&:not(:disabled)]:hover:bg-neutral-600",
+    primary: "text-label-common bg-background-primary [&:not(:disabled)]:hover:bg-brand-600",
+    secondary: "text-label-common bg-background-secondary [&:not(:disabled)]:hover:bg-neutral-600",
+    text: "text-label-normal",
   };
 
-  const outlineCategory: Record<BtnCategoryType, string> = {
-    primary: "text-brand-500 border-1 border-brand-500 bg-white [&:not(:disabled)]:hover:bg-brand-100",
-    secondary: "text-neutral-700 border-1 border-neutral-200 bg-white [&:not(:disabled)]:hover:bg-neutral-100",
+  const variantCategory: Record<BtnCategoryType, string> = {
+    primary:
+      "text-background-primary border-1 border-background-primary bg-white [&:not(:disabled)]:hover:bg-brand-100",
+    secondary:
+      "text-background-secondary border-1 border-background-secondary bg-white [&:not(:disabled)]:hover:bg-neutral-100",
+    text: "text-background-primary",
   };
 
   const btnSize: Record<BtnSizeType, string> = {
-    large: "typo-body2-m px-5 py-4 h-10 gap-3",
-    medium: "typo-body2-m px-5 py-3 h-9 gap-3",
-    small: "typo-body3-m px-5 py-3 h-8 gap-2",
+    large: "typo-body-1-normal font-medium h-10 px-5 py-4",
+    medium: "typo-body-2-normal font-medium h-[40px] py-3 px-4",
+    small: "typo-caption-1 font-medium h-8 px-4 py-3",
   };
 
   return (
     <button
       className={`
-       ${props.outline ? outlineCategory[category] : btnCategory[category]} ${btnSize[size]}
-        cn-center cursor-pointer rounded-3 disabled:cursor-no-drop disabled:opacity-50
+       ${props.variant ? variantCategory[category] : btnCategory[category]} ${btnSize[size]}
+        cn-center cursor-pointer rounded-4 disabled:cursor-no-drop
+        disabled:opacity-50
       `}
       style={{ width: btnWidth }}
       onClick={props.onClick}

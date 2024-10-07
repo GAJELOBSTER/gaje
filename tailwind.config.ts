@@ -28,6 +28,7 @@ const config: Config = {
       excel: { ...darkgreen },
       background: {
         primary: blue[500],
+        "primary-weak": blue[50],
         secondary: gray[800],
         white: common["white"],
         gray: gray[100],
@@ -36,14 +37,16 @@ const config: Config = {
       border: {
         primary: blue[500],
         focused: gray[800],
-        enabled: gray[200],
+        enabled: gray[300],
+        week: gray[100],
         negative: red[500],
       },
       label: {
         strong: common["black"],
         normal: gray[900],
         neutral: gray[700],
-        assistant: red[500],
+        assistant: gray[500],
+        disabled: gray[200],
         primary: blue[500],
         common: common["white"],
         negative: red[500],
