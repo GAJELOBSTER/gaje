@@ -2,6 +2,7 @@ import { ITextFieldProps, TextFieldSizeType } from "@/components/common/TextFiel
 
 interface ITextFieldWithChildrenProps extends ITextFieldProps {
   children: React.ReactNode;
+  size: TextFieldSizeType;
 }
 
 function IconContainer(props: ITextFieldWithChildrenProps) {

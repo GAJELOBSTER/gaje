@@ -4,6 +4,15 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { CookieDataType } from "@/types/commonType";
 
+export const getServerCookie = (): CookieDataType => {
+  const cookieStore = cookies();
+  return {
+    accessToken: cookieStore.get("accessToken")?.value,
+    refreshToken: cookieStore.get("refreshToken")?.value,
+    // userInfo: getJson(cookieStore.get("userInfo")?.value || ""),
+  };
+};
+
 export const getCookieData = (): CookieDataType => {
   const cookieStore = cookies();
   return {

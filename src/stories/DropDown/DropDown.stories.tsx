@@ -1,54 +1,54 @@
-import type { Meta, StoryObj } from "@storybook/react";
+// import type { Meta, StoryObj } from "@storybook/react";
 
-import DropDown, { IDropDownProps } from "@/components/common/DropDown";
-import { useState } from "react";
+// import DropDown, { IDropDownProps } from "@/components/common/DropDown";
+// import { useState } from "react";
 
-const meta = {
-  component: DropDown,
-  parameters: {
-    layout: "centered",
-    controls: {
-      include: ["size", "category", "labelPosition", "readonly", "error", "placeHolder", "helperText"],
-    },
-  },
-  args: {
-    size: "large",
-    category: "default",
-    placeHolder: "Placeholder",
-    helperText: "Helper Text",
-    labelPosition: "vertical",
-  },
-} satisfies Meta<typeof DropDown>;
+// const meta = {
+//   component: DropDown,
+//   parameters: {
+//     layout: "centered",
+//     controls: {
+//       include: ["size", "category", "labelPosition", "readonly", "error", "placeHolder", "helperText"],
+//     },
+//   },
+//   args: {
+//     size: "large",
+//     category: "default",
+//     placeHolder: "Placeholder",
+//     helperText: "Helper Text",
+//     labelPosition: "vertical",
+//   },
+// } satisfies Meta<typeof DropDown>;
 
-export default meta;
+// export default meta;
 
-type Story = StoryObj<typeof DropDown>;
+// type Story = StoryObj<typeof DropDown>;
 
-const DROPBOX_WIDTH = 200;
-const DROPBOX_DATA = new Array(10)
-  .fill({})
-  .map((_, index) => ({ index: index + 1, value: `Option ${index + 1}`, isDisabled: index === 2 ? true : false }));
+// const DROPBOX_WIDTH = 200;
+// const DROPBOX_DATA = new Array(10)
+//   .fill({})
+//   .map((_, index) => ({ index: index + 1, value: `Option ${index + 1}`, isDisabled: index === 2 ? true : false }));
 
-const DropBoxHooks = (args: IDropDownProps) => {
-  type CheckedDataType = {
-    index: number;
-    value: string;
-    isDisabled: boolean;
-  };
-  const [checkedData, setCheckedData] = useState<CheckedDataType | { value: string }>({ value: "" });
+// const DropBoxHooks = (args: IDropDownProps) => {
+//   type CheckedDataType = {
+//     index: number;
+//     value: string;
+//     isDisabled: boolean;
+//   };
+//   const [checkedData, setCheckedData] = useState<CheckedDataType | { value: string }>({ value: "" });
 
-  return (
-    <DropDown
-      {...args}
-      label="Label"
-      width={DROPBOX_WIDTH}
-      data={DROPBOX_DATA}
-      checkedData={checkedData}
-      setCheckedData={setCheckedData}
-    />
-  );
-};
+//   return (
+//     <DropDown
+//       {...args}
+//       label="Label"
+//       width={DROPBOX_WIDTH}
+//       data={DROPBOX_DATA}
+//       checkedData={checkedData}
+//       setCheckedData={setCheckedData}
+//     />
+//   );
+// };
 
-export const Default: Story = {
-  render: (args) => <DropBoxHooks {...args} />,
-};
+// export const Default: Story = {
+//   render: (args) => <DropBoxHooks {...args} />,
+// };

@@ -65,8 +65,8 @@ export default function LoginForm() {
   return (
     <div className="relative flex-col">
       {isLoading && <Loader />}
-      <div className="typo-title1-sb cn-center text-neutral-600">로그인</div>
-      <div className="typo-body2-sb mt-[60px] w-[400px] text-neutral-400">
+      <div className="text-neutral-600 typo-title1-sb cn-center">로그인</div>
+      <div className="text-neutral-400 typo-body2-sb mt-[60px] w-[400px]">
         <TextField {...userLoginId} label={"아이디"} placeholder={"아이디를 입력해 주세요"} size="large" />
         <TextField
           {...userPassword}

@@ -1,7 +1,7 @@
 import { ITextFieldProps, TextFieldSizeType } from "@/components/common/TextField";
 
 interface IInputContainerProps {
-  props: ITextFieldProps;
+  props: ITextFieldProps & { size: TextFieldSizeType };
   children: React.ReactNode;
   isFocus: boolean;
   isHover: boolean;

@@ -5,7 +5,7 @@ import plugin from "tailwindcss/plugin";
 // Styles
 import { customComponents } from "./src/styles/tailwindPlugin";
 import palette from "./src/styles/palette";
-const { common, gray, blue, black, white, purple, navy, green, red, orange, darkgreen, transparent } = palette;
+const { common, gray, blue, red, orange, transparent } = palette;
 
 const config: Config = {
   content: [
@@ -17,15 +17,7 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      black: black,
-      white: white,
       transparent,
-      brand: { ...purple },
-      neutral: { ...navy },
-      positive: { ...green },
-      negative: { ...red },
-      warning: { ...orange },
-      excel: { ...darkgreen },
       background: {
         primary: blue[500],
         "primary-weak": blue[50],

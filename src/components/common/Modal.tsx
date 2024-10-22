@@ -28,9 +28,9 @@ const modalSize: Record<ModalSizeType, string> = {
 
 const ModalContents = (props: ICommonModalProps) => (
   <>
-    <div className="fixed left-0 top-0 h-full w-full bg-black opacity-70" onClick={props.onClose}></div>
+    <div className="bg-black fixed left-0 top-0 h-full w-full opacity-70" onClick={props.onClose}></div>
     <div
-      className={`${modalSize[props.size]} fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-4 bg-white`}
+      className={`${modalSize[props.size]} bg-white fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-4`}
     >
       {props.children}
       {props.showCloseBtn && (

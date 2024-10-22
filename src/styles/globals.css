@@ -9,7 +9,7 @@ body {
 .loader {
   width: 48px;
   height: 48px;
-  @apply border-[5px] border-brand-400;
+  @apply border-[5px];
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
