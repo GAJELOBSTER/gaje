@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <div className="relative">
       <div
-        className={` ${isOpen ? "rounded-l-6 border-1 border-r-0" : "rounded-6 border-1"} border-border-week relative h-[100vh] w-[280px] bg-background-white p-7`}
+        className={` ${isOpen ? "rounded-l-6 border-1 border-r-0" : "rounded-6 border-1"} relative h-[100vh] w-[280px] border-border-week bg-background-white p-7`}
       >
         <div className="typo-heading-1 mb-8 px-4 font-bold text-label-normal">Feed</div>
         {/* 고정 영역 */}
@@ -45,7 +45,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="typo-body2-sb typo-body-1-normal flex flex-col gap-3">
+        <div className="typo-body-1-normal flex flex-col gap-3">
           <div className="typo-body-2-normal px-4 font-bold text-label-assistant">피드 관리</div>
           {navList.map((nav, index) => (
             <Link className="flex h-[40px] items-center gap-4 px-4 py-[10px]" key={`nav-list-${index}`} href={nav.href}>
@@ -56,7 +56,7 @@ export default function Navbar() {
         </div>
       </div>
       {isOpen && (
-        <div className="border-border-week absolute -right-[280px] top-0 z-10 h-[100vh] w-[280px] rounded-r-6 border-1 bg-background-white p-7">
+        <div className="absolute -right-[280px] top-0 z-10 h-[100vh] w-[280px] rounded-r-6 border-1 border-border-week bg-background-white p-7">
           <div className="flex justify-between">
             <div className="typo-heading-1 mb-8 px-4 font-bold text-label-normal">알림</div>
             <div className="cursor-pointer" onClick={() => setIsOpen(false)}>

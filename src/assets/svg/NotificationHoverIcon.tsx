@@ -8,7 +8,7 @@ export default function NotificationHoverIcon({ className }: { className?: strin
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_317_3563)">
+      <g clipPath="url(#clip0_317_3563)">
         <mask
           id="mask0_317_3563"
           style={{ maskType: "alpha" }}

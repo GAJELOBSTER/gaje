@@ -8,7 +8,7 @@ export default function FeedHoverIcon({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_317_3227)">
+      <g clipPath="url(#clip0_317_3227)">
         <mask
           id="mask0_317_3227"
           style={{ maskType: "alpha" }}

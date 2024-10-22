@@ -8,7 +8,7 @@ export default function NotificationIcon({ className }: { className?: string }) 
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_273_3232)">
+      <g clipPath="url(#clip0_273_3232)">
         <mask
           id="mask0_273_3232"
           style={{ maskType: "alpha" }}
