@@ -20,8 +20,3 @@ export const logoutOnTokenExpiration = async () => {
   response.cookies.delete("refreshToken");
   return response;
 };
-
-export const handleZodError = (error: z.ZodError) => {
-  const { path, message } = error.errors[0];
-  return NextResponse.json({ msg: `${path[0] ? `'${path}': ` : ""}${message}` }, { status: 400 });
-};

@@ -4,17 +4,17 @@ import { NextRequest, NextResponse } from "next/server";
 // Libs
 import { z } from "zod";
 import prisma from "@/libs/prisma";
-import { handleZodError } from "@/libs/serverUtils";
 
 // Services
 import { isAuthenticated } from "@/services/authService";
+import { handleError, handleZodError } from "@/services/errorService";
 
 type Params = {
   workspaceId: string;
 };
 
 const paramsSchema = z.object({
-  workspaceId: z.number(),
+  workspaceId: z.string().cuid(),
 });
 
 const schema = z
@@ -32,7 +32,7 @@ const schema = z
  *    parameters:
  *      - in: path
  *        name: workspaceId
- *        type: number
+ *        type: string
  *        required: true
  *      - in: body
  *        schema:
@@ -54,6 +54,8 @@ const schema = z
  *         $ref: '#/definitions/responses/400'
  *      '401':
  *         $ref: '#/definitions/responses/401'
+ *      '403':
+ *         $ref: '#/definitions/responses/403'
  *      '404':
  *         $ref: '#/definitions/responses/404'
  */
@@ -66,22 +68,26 @@ export async function PATCH(req: NextRequest, { params }: { params: Params }) {
     const { success, data, error } = schema.safeParse(body);
     if (!success) return handleZodError(error);
 
-    const workspaceId = Number(params.workspaceId);
-    const { success: paramsSuccess, error: paramsError } = paramsSchema.safeParse({ workspaceId });
+    const paramsResult = paramsSchema.safeParse({ workspaceId: params.workspaceId });
+    const { success: paramsSuccess, data: paramsData, error: paramsError } = paramsResult;
     if (!paramsSuccess) return handleZodError(paramsError);
 
-    const checkWorkspace = await prisma.workspace.findUnique({ where: { id: workspaceId } });
-    if (!checkWorkspace) return NextResponse.json({ msg: "존재하지 않는 Workspace ID 입니다" }, { status: 404 });
+    const checkWorkspace = await prisma.workspace.findUnique({
+      where: { id: paramsData.workspaceId },
+      include: { member: { where: { userId: authResult.user?.id } } },
+    });
+    if (!checkWorkspace) return handleError("WORKSPACE_ID_NOT_FOUND");
+    if (!checkWorkspace.member[0]?.isOwner) return handleError("IS_NOT_OWNER");
 
     const workspaceList = await prisma.workspace.update({
-      where: { id: workspaceId },
+      where: { id: paramsData.workspaceId },
       data,
     });
 
     return NextResponse.json(workspaceList);
   } catch (error) {
     console.error("워크스페이스 수정 오류", error);
-    return NextResponse.json({ msg: "서버 에러" }, { status: 500 });
+    return handleError("INTERNAL_SERVER_ERROR");
   }
 }
 
@@ -94,15 +100,17 @@ export async function PATCH(req: NextRequest, { params }: { params: Params }) {
  *    parameters:
  *      - in: path
  *        name: workspaceId
- *        type: number
+ *        type: string
  *        required: true
  *    responses:
- *      '200':
- *         $ref: '#/definitions/responses/200'
+ *      '204':
+ *         $ref: '#/definitions/responses/204'
  *      '400':
  *         $ref: '#/definitions/responses/400'
  *      '401':
  *         $ref: '#/definitions/responses/401'
+ *      '403':
+ *         $ref: '#/definitions/responses/403'
  *      '404':
  *         $ref: '#/definitions/responses/404'
  */
@@ -111,20 +119,24 @@ export async function DELETE(req: NextRequest, { params }: { params: Params }) {
     const authResult = await isAuthenticated();
     if (!authResult.ok) return authResult.response;
 
-    const workspaceId = Number(params.workspaceId);
-    const { success: paramsSuccess, error: paramsError } = paramsSchema.safeParse({ workspaceId });
+    const paramsResult = paramsSchema.safeParse({ workspaceId: params.workspaceId });
+    const { success: paramsSuccess, data: paramsData, error: paramsError } = paramsResult;
     if (!paramsSuccess) return handleZodError(paramsError);
 
-    const checkWorkspace = await prisma.workspace.findUnique({ where: { id: workspaceId } });
-    if (!checkWorkspace) return NextResponse.json({ msg: "존재하지 않는 Workspace ID 입니다" }, { status: 404 });
+    const checkWorkspace = await prisma.workspace.findUnique({
+      where: { id: paramsData.workspaceId },
+      include: { member: { where: { userId: authResult.user?.id } } },
+    });
+    if (!checkWorkspace) return handleError("WORKSPACE_ID_NOT_FOUND");
+    if (!checkWorkspace.member[0]?.isOwner) return handleError("IS_NOT_OWNER");
 
     await prisma.workspace.delete({
-      where: { id: workspaceId },
+      where: { id: paramsData.workspaceId },
     });
 
-    return new NextResponse(null, { status: 200 });
+    return new NextResponse(null, { status: 204 });
   } catch (error) {
     console.error("워크스페이스 삭제 오류", error);
-    return NextResponse.json({ msg: "서버 에러" }, { status: 500 });
+    return handleError("INTERNAL_SERVER_ERROR");
   }
 }

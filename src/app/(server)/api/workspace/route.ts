@@ -4,10 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 // Libs
 import { z } from "zod";
 import prisma from "@/libs/prisma";
-import { handleZodError } from "@/libs/serverUtils";
 
 // Services
 import { isAuthenticated } from "@/services/authService";
+import { handleError, handleZodError } from "@/services/errorService";
 
 const schema = z
   .object({
@@ -48,7 +48,7 @@ const schema = z
 export async function POST(req: NextRequest) {
   try {
     const authResult = await isAuthenticated();
-    if (!authResult.ok || !authResult.user) return authResult.response;
+    if (!authResult.ok) return authResult.response;
 
     const body = await req.json();
     const { success, data, error } = schema.safeParse(body);
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(createdWorkspace, { status: 201 });
   } catch (error) {
     console.error("워크스페이스 생성 오류", error);
-    return NextResponse.json({ msg: "서버 에러" }, { status: 500 });
+    return handleError("INTERNAL_SERVER_ERROR");
   }
 }
 
@@ -88,7 +88,9 @@ export async function POST(req: NextRequest) {
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/definitions/schema/Workspace'
+ *              $ref: '#/definitions/schema/WorkspaceWithMemberAndFeed'
+ *      '401':
+ *         $ref: '#/definitions/responses/401'
  */
 export async function GET() {
   try {
@@ -96,12 +98,12 @@ export async function GET() {
     if (!authResult.ok) return authResult.response;
 
     const workspaceList = await prisma.workspace.findMany({
-      where: { userId: authResult.user?.id },
+      where: { member: { some: { userId: authResult.user?.id } } },
       include: { member: true, feed: true },
     });
     return NextResponse.json(workspaceList);
   } catch (error) {
     console.error("워크스페이스 불러오기 오류", error);
-    return NextResponse.json({ msg: "서버 에러" }, { status: 500 });
+    return handleError("INTERNAL_SERVER_ERROR");
   }
 }

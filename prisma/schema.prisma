@@ -53,6 +53,7 @@ model User {
   log           Log[]
   feedLog       FeedLog[]
   member        Member[]
+  feedAction    FeedAction[]
 }
 
 model VerificationToken {
@@ -64,7 +65,7 @@ model VerificationToken {
 }
 
 model Workspace {
-  id       Int @id @default(autoincrement())
+  id       String @id @default(cuid())
   name     String
   isPublic Boolean @default(false)
   userId   String
@@ -77,25 +78,43 @@ model Feed {
   id          Int @id @default(autoincrement())
   title       String
   feedUrl     String
-  link        String
-  description String
-  imageUrl    String
-  workspaceId Int
+  description String?
+  imageUrl    String?
+  workspaceId String
   workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
-  feedAction  FeedAction[]
-  comment     Comment[]
+  feedItem    FeedItem[]
+  @@unique([feedUrl, workspaceId])
+}
+
+model FeedItem {
+  id           String @id @default(cuid())
+  link         String
+  title        String
+  description  String?
+  imageUrl     String?
+  publishedAt  String
+  feedId       Int
+  feed         Feed @relation(fields: [feedId], references: [id], onDelete: Cascade)
+  comment      Comment[]
+  feedAction   FeedAction[]
+
+  @@unique([link, feedId])
+}
+
+enum FeedActionType {
+  HIDDEN
+  BOOKMARK
 }
 
 model FeedAction {
-  link String
-  title String
-  type String
-  description String
-  pubDate DateTime
-  feedId Int
-  feed Feed @relation(fields: [feedId], references: [id], onDelete: Cascade)
+  id         Int @id @default(autoincrement())
+  type       FeedActionType
+  userId     String
+  feedItemId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  feedItem   FeedItem @relation(fields: [feedItemId], references: [id], onDelete: Cascade)
   
-  @@id([link, feedId])
+  @@unique([userId, feedItemId, type])
 }
 
 model Comment {
@@ -104,9 +123,9 @@ model Comment {
   itemLink    String
   feedItemUrl String
   userId      String
-  feedId      Int
+  feedItemId  String
   parentId    Int?
-  feed        Feed      @relation(fields: [feedId], references: [id], onDelete: Cascade)
+  feedItem    FeedItem  @relation(fields: [feedItemId], references: [id], onDelete: Cascade)
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   children    Comment[] @relation("children")
   parent      Comment?  @relation("children", fields: [parentId], references: [id], onDelete: Cascade)
@@ -122,9 +141,11 @@ model Member {
   id Int @id @default(autoincrement())
   isOwner Boolean
   userId String
-  workspaceId Int
+  workspaceId String
   user User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, workspaceId])
 }
 
 model FeedLog {
