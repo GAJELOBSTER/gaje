@@ -24,6 +24,7 @@ const config: Config = {
         secondary: gray[800],
         white: common["white"],
         gray: gray[100],
+        "gray-bold": gray[300],
         negative: red[500],
       },
       border: {

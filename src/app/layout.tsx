@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { CookiesProvider } from "next-client-cookies/server";
 
 // Components
-import AlertModal from "@/components/common/AlertModal";
+// import AlertModal from "@/components/common/AlertModal";
 
 // Styles
 import "@/styles/globals.css";
@@ -21,7 +21,7 @@ export default async function RootLayout(props: Pick<IPageProps, "children">) {
     <html>
       <body>
         <CookiesProvider>
-          <AlertModal />
+          {/* <AlertModal /> */}
           {props.children}
         </CookiesProvider>
         <div id="modal"></div>

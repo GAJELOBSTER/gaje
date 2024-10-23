@@ -9,9 +9,11 @@ import Link from "next/link";
 // Assets
 import Feedcon from "@/assets/svg/FeedIcon";
 import NotificationIcon from "@/assets/svg/NotificationIcon";
-import CloseIcon from "@/assets/svg/CloseIcon";
 import FeedHoverIcon from "@/assets/svg/FeedHoverIcon ";
 import NotificationHoverIcon from "@/assets/svg/NotificationHoverIcon";
+
+// Componenet
+import NotificationList from "@/components/layout/navbarItem/NotificationList";
 
 // Libs
 import navList from "@/libs/data/navList";
@@ -19,14 +21,14 @@ import navList from "@/libs/data/navList";
 // Types
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(true);
 
   return (
     <div className="relative">
       <div
-        className={` ${isOpen ? "rounded-l-6 border-1 border-r-0" : "rounded-6 border-1"} relative h-[100vh] w-[280px] border-border-week bg-background-white p-7`}
+        className={` ${isNotificationOpen ? "rounded-l-6 border-1 border-r-0" : "rounded-6 border-1"} relative h-[100vh] w-[280px] border-border-week bg-background-white p-7`}
       >
-        <div className="typo-heading-1 mb-8 px-4 font-bold text-label-normal">Feed</div>
+        <div className="typo-heading-1 mb-8 px-4 font-semibold text-label-normal">RSS</div>
         {/* 고정 영역 */}
         <div className="typo-body-1-normal mb-8 flex flex-col gap-3 font-medium *:flex *:h-[40px] *:gap-4 *:rounded-3 *:px-4 *:py-[10px]">
           <Link className="group hover:bg-background-gray" href="/main">
@@ -36,10 +38,10 @@ export default function Navbar() {
             </div>
             <div className="">내 피드</div>
           </Link>
-          <div className="group cursor-pointer hover:bg-background-gray" onClick={() => setIsOpen(true)}>
+          <div className="group cursor-pointer hover:bg-background-gray" onClick={() => setIsNotificationOpen(true)}>
             <div className="h-6 w-6">
-              <NotificationIcon className="group-hover:hidden" />
-              <NotificationHoverIcon className="hidden group-hover:block" />
+              <NotificationIcon className={`${isNotificationOpen && "hidden"} group-hover:hidden`} />
+              <NotificationHoverIcon className={`${isNotificationOpen ? "block" : "hidden"} group-hover:block`} />
             </div>
             <div className="">알림</div>
           </div>
@@ -55,16 +57,7 @@ export default function Navbar() {
           ))}
         </div>
       </div>
-      {isOpen && (
-        <div className="absolute -right-[280px] top-0 z-10 h-[100vh] w-[280px] rounded-r-6 border-1 border-border-week bg-background-white p-7">
-          <div className="flex justify-between">
-            <div className="typo-heading-1 mb-8 px-4 font-bold text-label-normal">알림</div>
-            <div className="cursor-pointer" onClick={() => setIsOpen(false)}>
-              <CloseIcon />
-            </div>
-          </div>
-        </div>
-      )}
+      {isNotificationOpen && <NotificationList setIsNotificationOpen={setIsNotificationOpen} />}
     </div>
   );
 }
