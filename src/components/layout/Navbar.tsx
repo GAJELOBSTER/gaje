@@ -21,7 +21,7 @@ import navList from "@/libs/data/navList";
 // Types
 
 export default function Navbar() {
-  const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(true);
+  const [isNotificationOpen, setIsNotificationOpen] = useState<boolean>(false);
 
   return (
     <div className="relative">

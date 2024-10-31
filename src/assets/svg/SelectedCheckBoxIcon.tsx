@@ -1,12 +1,16 @@
 export default function SelectedCheckBoxIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <rect width="20" height="20" rx="4" fill="current" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M15.7071 6.29289C16.0976 6.68342 16.0976 7.31658 15.7071 7.70711L9.70711 13.7071C9.31658 14.0976 8.68342 14.0976 8.29289 13.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L9 11.5858L14.2929 6.29289C14.6834 5.90237 15.3166 5.90237 15.7071 6.29289Z"
-        fill="white"
+        d="M0 6C0 2.68629 2.68629 0 6 0H18C21.3137 0 24 2.68629 24 6V18C24 21.3137 21.3137 24 18 24H6C2.68629 24 0 21.3137 0 18V6Z"
+        fill="#0057FF"
+      />
+      <path
+        d="M6.34299 11.574L10.5856 15.8166L17.6567 8.74557"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

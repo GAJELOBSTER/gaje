@@ -20,12 +20,17 @@ const config: Config = {
       transparent,
       background: {
         primary: blue[500],
+        "primary-hover": blue[600],
         "primary-weak": blue[50],
         secondary: gray[800],
+        "secondary-hover": gray[900],
+        "secondary-weak": gray[50],
         white: common["white"],
         gray: gray[100],
         "gray-bold": gray[300],
         negative: red[500],
+        "negative-hover": red[600],
+        "negative-weak": red[50],
       },
       border: {
         primary: blue[500],

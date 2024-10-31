@@ -41,9 +41,10 @@ export default function NotificationList(props: INotificationListProps) {
               </div>
               <div className="typo-body-2-reading mb-4 line-clamp-3 text-label-neutral">{data.text}</div>
 
-              <div className="typo-caption-1 mb-4 flex text-label-assistant">
+              <div className="typo-caption-1 mb-4 flex gap-3 text-label-assistant">
                 <div className="flex-[1_0_auto]">{data.date}</div>
-                <div className="line-clamp-1 flex-[0_1_auto] text-ellipsis">{data.title}</div>
+                <div className="bg h-5 w-1" />
+                <div className="line-clamp-1 flex-[0_1_auto] text-ellipsis">{data.title}di</div>
               </div>
             </div>
           ))

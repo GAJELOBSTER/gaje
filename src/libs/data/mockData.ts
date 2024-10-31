@@ -11,3 +11,11 @@ export const mockNotificationList = (count: number) => {
     title: "대규모 CDC Pipeline 운영을 위한 Debezium 개선 여정",
   }));
 };
+
+export const mockCheckBoxList = (count: number) => {
+  return new Array(count).fill({}).map((_, index) => ({
+    index: index + 1,
+    value: "CheckboxLabel",
+    name: "Checkbox Label",
+  }));
+};

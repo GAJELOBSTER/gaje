@@ -1,7 +1,7 @@
 "use client";
 
 // React
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, SetStateAction, useState } from "react";
 
 // Components
 import Chips from "@/components/common/Chips";
@@ -9,6 +9,9 @@ import TextField from "@/components/common/TextField";
 import useInput from "@/hooks/useInput";
 import ShowPassword from "@/assets/svg/ShowPassword";
 import Toggle from "@/components/common/Toggle";
+import CheckBox from "@/components/common/CheckBox";
+import { mockCheckBoxList } from "@/libs/data/mockData";
+import useCheckBox from "@/hooks/useCheckBox";
 
 export default function Main() {
   const test = [
@@ -43,7 +46,11 @@ export default function Main() {
   const [checked, setChecked] = useState<boolean>(true);
   const testInput = useInput();
 
-  // console.log("testInput", testInput);
+  const checkBoxData = mockCheckBoxList(4);
+
+  const { checkBoxStateList, setCheckBoxStateList, initCheckBoxState } = useCheckBox(checkBoxData);
+
+  console.log("checkBoxStateList", checkBoxStateList);
 
   return (
     <div className="ml-9 py-7">
@@ -123,7 +130,24 @@ export default function Main() {
         />
       </div>
 
-      <div className="bg-background-gray-bold typo-body-2-normal font-medium"></div>
+      <div className="mt-6">
+        {checkBoxData.map((data, index) => (
+          <CheckBox
+            // category="check"
+            size="small"
+            key={`check-box-${index}`}
+            className="mb-3 last:mb-0"
+            label={data.name}
+            value={index}
+            // disabled
+            checkBoxStateList={checkBoxStateList}
+            setCheckBoxStateList={setCheckBoxStateList}
+          />
+        ))}
+        {/* <CheckBox checkBoxStateList={checkBoxStateList} setCheckBoxStateList={setCheckBoxStateList} /> */}
+      </div>
+
+      {/* <div className="typo-body-2-normal bg-background-gray-bold font-medium">div</div> */}
     </div>
   );
 }
