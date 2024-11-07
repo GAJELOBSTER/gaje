@@ -1,22 +1,16 @@
-version: "3.1"
+version: "3.8"
+
 services:
-  local-nextjs:
-    build:
-      context: ./
-      dockerfile: ./docker/local/Dockerfile
-    container_name: local-nextjs
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./:/var/services/app
-      - "/var/services/app/node_modules"
+  postgres:
+    image: postgres
     environment:
-      - API_URL=${API_URL}
-      - API_VERSION=${API_VERSION}
-      - NEXT_PUBLIC_NEXT_SERVER=${NEXT_PUBLIC_NEXT_SERVER}
-      - TZ=Asia/Seoul
-    networks:
-      - app-network
-networks:
-  app-network:
-    driver: bridge
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
