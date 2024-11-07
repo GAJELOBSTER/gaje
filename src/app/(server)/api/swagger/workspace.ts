@@ -6,35 +6,47 @@
  *      type: object
  *      properties:
  *        id:
- *          type: number
+ *          type: string
  *          description: 워크스페이스 ID
  *        name:
  *          type: string
  *          description: 워크스페이스 이름
  *        isPublic:
  *          type: boolean
- *          description: 공유 워크스페이스 여부
+ *          description: 워크스페이스 공유 여부
  *        userId:
  *          type: string
  *          description: 유저 ID
- *     WorkspaceWithMember:
+ */
+
+/**
+ * @description 합성 모델
+ * @swagger
+ * definitions:
+ *   schema:
+ *     WorkspaceWithMemberAndFeed:
  *      type: object
  *      properties:
  *        id:
- *          type: number
+ *          type: string
  *          description: 워크스페이스 ID
  *        name:
  *          type: string
  *          description: 워크스페이스 이름
  *        isPublic:
  *          type: boolean
- *          description: 공유 워크스페이스 여부
+ *          description: 워크스페이스 공유 여부
  *        userId:
  *          type: string
  *          description: 유저 ID
  *        member:
  *          type: array
- *          description: 워크스페이스 멤버들
+ *          description: 워크스페이스 멤버 목록
  *          items:
  *            $ref: '#/definitions/schema/Member'
+ *        feed:
+ *          type: array
+ *          description: 워크스페이스 피드 목록
+ *          items:
+ *            $ref: '#/definitions/schema/Feed'
  */
