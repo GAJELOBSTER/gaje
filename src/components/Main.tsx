@@ -12,6 +12,7 @@ import Toggle from "@/components/common/Toggle";
 import CheckBox from "@/components/common/CheckBox";
 import { mockCheckBoxList } from "@/libs/data/mockData";
 import useCheckBox from "@/hooks/useCheckBox";
+import Label from "@/components/atoms/label/Label";
 
 export default function Main() {
   const test = [
@@ -49,8 +50,6 @@ export default function Main() {
   const checkBoxData = mockCheckBoxList(4);
 
   const { checkBoxStateList, setCheckBoxStateList, initCheckBoxState } = useCheckBox(checkBoxData);
-
-  console.log("checkBoxStateList", checkBoxStateList);
 
   return (
     <div className="ml-9 py-7">
@@ -146,6 +145,8 @@ export default function Main() {
         ))}
         {/* <CheckBox checkBoxStateList={checkBoxStateList} setCheckBoxStateList={setCheckBoxStateList} /> */}
       </div>
+
+      <Label text={"레이블"} required />
 
       {/* <div className="typo-body-2-normal bg-background-gray-bold font-medium">div</div> */}
     </div>
