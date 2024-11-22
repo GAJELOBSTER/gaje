@@ -4,7 +4,7 @@
 import DeleteIcon from "@/assets/svg/DeleteIcon";
 
 //Components
-import Avatar from "@/components/common/Avatar";
+import Avatar from "@/components/atoms/avartar/Avatar";
 
 type WidthUnitType = "px" | "%" | "em" | "vh";
 type ChipsSizeType = "large" | "medium" | "small";

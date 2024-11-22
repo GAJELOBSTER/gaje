@@ -1,6 +1,6 @@
 "use client";
 
-import Btn from "@/components/common/Btn";
+import Btn from "@/components/atoms/btn/Btn";
 
 interface IErrorProps {
   error: Error & { digest?: string };

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 
 // Components
-import Btn from "@/components/common/Btn";
+import Btn from "@/components/atoms/btn/Btn";
 
 export default function LoginForm() {
   const handleFeed = async () => {

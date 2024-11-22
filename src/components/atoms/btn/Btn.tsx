@@ -1,7 +1,7 @@
 "use client";
 
 type WidthUnitType = "px" | "%" | "em" | "vh";
-type BtnCategoryType = "primary" | "secondary" | "text";
+type BtnCategoryType = "primary" | "secondary" | "negative" | "text";
 type BtnSizeType = "large" | "medium" | "small";
 
 export interface IButtonProps {
@@ -29,17 +29,20 @@ export default function Btn({ category = "primary", size = "medium", ...props }:
   const btnWidth = props.width ? (typeof props.width === "string" ? props.width : `${props.width}px`) : "100%";
 
   const btnCategory: Record<BtnCategoryType, string> = {
-    primary: "text-label-common bg-background-primary [&:not(:disabled)]:hover:bg-brand-600",
-    secondary: "text-label-common bg-background-secondary [&:not(:disabled)]:hover:bg-neutral-600",
-    text: "text-label-normal",
+    primary: "text-label-common bg-background-primary [&:not(:disabled)]:hover:bg-background-primary-hover",
+    secondary: "text-label-common bg-background-secondary [&:not(:disabled)]:hover:bg-background-secondary-hover",
+    negative: "text-label-common bg-background-negative [&:not(:disabled)]:hover:bg-background-negative-hover",
+    text: "text-label-normal [&:not(:disabled)]:hover:underline",
   };
 
   const variantCategory: Record<BtnCategoryType, string> = {
     primary:
-      "text-background-primary border-1 border-background-primary bg-white [&:not(:disabled)]:hover:bg-brand-100",
+      "text-background-primary border-1 border-background-primary bg-label-common [&:not(:disabled)]:hover:bg-background-primary-weak",
     secondary:
-      "text-background-secondary border-1 border-background-secondary bg-white [&:not(:disabled)]:hover:bg-neutral-100",
-    text: "text-background-primary",
+      "text-label-secondary border-1 border-border-enabled bg-label-common [&:not(:disabled)]:hover:bg-background-secondary-weak",
+    negative:
+      "text-label-negative border-1 border-boder-negative bg-label-common [&:not(:disabled)]:hover:bg-background-negative-weak",
+    text: "text-background-primary [&:not(:disabled)]:hover:text-background-primary-hover [&:not(:disabled)]:hover:underline",
   };
 
   const btnSize: Record<BtnSizeType, string> = {

@@ -13,6 +13,10 @@ import CheckBox from "@/components/common/CheckBox";
 import { mockCheckBoxList } from "@/libs/data/mockData";
 import useCheckBox from "@/hooks/useCheckBox";
 import Label from "@/components/atoms/label/Label";
+import Btn from "@/components/atoms/btn/Btn";
+import IconBtn from "@/components/atoms/iconBtn/IconBtn";
+import Input from "@/components/atoms/input/Input";
+import TextArea from "@/components/atoms/textArea/TextArea";
 
 export default function Main() {
   const test = [
@@ -146,7 +150,13 @@ export default function Main() {
         {/* <CheckBox checkBoxStateList={checkBoxStateList} setCheckBoxStateList={setCheckBoxStateList} /> */}
       </div>
 
-      <Label text={"레이블"} required />
+      <div className="mt-3 flex flex-col gap-3">
+        <Input {...testInput} />
+      </div>
+
+      <div className="mt-3 flex flex-col gap-3">
+        <TextArea {...testInput} />
+      </div>
 
       {/* <div className="typo-body-2-normal bg-background-gray-bold font-medium">div</div> */}
     </div>

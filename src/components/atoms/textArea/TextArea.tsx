@@ -2,16 +2,17 @@
 
 // React
 import { useState } from "react";
+import TextareaAutosizeProps from "react-textarea-autosize";
 
 type WidthUnitType = "px" | "%" | "em" | "vh";
-export type InputSizeType = "large" | "medium" | "small";
+export type TextAreaSizeType = "large" | "medium" | "small";
 
-export interface IInputProps {
+export interface ITextAreaProps {
   className?: string;
   /** 인풋 가로 길이 */
   width?: `${number}${WidthUnitType}` | number;
   /** 인풋 사이즈, 디자인 시스템(피그마 컨벤션) */
-  size?: InputSizeType;
+  size?: TextAreaSizeType;
   /** 읽기 전용 여부 */
   readonly?: boolean;
   /** 비활성화 여부 */
@@ -32,23 +33,23 @@ export interface IInputProps {
   onBlur?: () => void;
 }
 
-export default function Input({ size = "medium", ...args }: IInputProps) {
+export default function TextArea({ size = "medium", ...args }: ITextAreaProps) {
   const props = { ...args, size };
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const inputWidth = props.width ? (typeof props.width === "string" ? props.width : `${props.width}px`) : "100%";
 
-  const textSize: Record<InputSizeType, string> = {
+  const textSize: Record<TextAreaSizeType, string> = {
     large: "typo-body-1-normal font-medium",
     medium: "typo-body-2-normal font-medium",
     small: "typo-caption-1 font-medium",
   };
 
-  const inputType: Record<InputSizeType, string> = {
-    large: `px-6 h-10 ${textSize["large"]}`,
-    medium: `px-6 h-[40px] ${textSize["medium"]}`,
-    small: `px-4 h-8 ${textSize["small"]}`,
+  const textareaType: Record<TextAreaSizeType, string> = {
+    large: `px-6  py-4 ${textSize["large"]}`,
+    medium: `px-6  py-3 ${textSize["medium"]}`,
+    small: `px-4 py-3 ${textSize["small"]}`,
   };
 
   return (
@@ -61,11 +62,11 @@ export default function Input({ size = "medium", ...args }: IInputProps) {
     `}
       style={{ width: inputWidth }}
     >
-      <input
+      <TextareaAutosizeProps
         className={`
-            ${inputType[size]} 
-            w-full !bg-background-white outline-none placeholder:text-label-assistant disabled:text-label-disabled
-        `}
+              ${textareaType[size]} w-full
+              resize-none !bg-background-white outline-none placeholder:text-label-assistant
+            `}
         placeholder={props.placeholder}
         disabled={props.disabled}
         value={props.value}

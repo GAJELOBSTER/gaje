@@ -1,6 +1,6 @@
 // Components
+import Btn from "@/components/atoms/btn/Btn";
 import SampleModal from "@/components/modal/SampleModal";
-import Btn from "@/components/common/Btn";
 
 export default async function SamplePage() {
   return (
