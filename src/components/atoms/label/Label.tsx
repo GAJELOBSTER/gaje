@@ -1,6 +1,6 @@
 type LableSizeType = "small" | "medium" | "large";
 
-export interface ILabelProsp {
+export interface ILabelProps {
   /** 레이블 값 */
   text: string;
   /** 레이블 사이즈, 디자인 시스템(피그마 컨벤션) */
@@ -11,7 +11,7 @@ export interface ILabelProsp {
   required?: boolean;
 }
 
-export default function Label({ size = "medium", ...props }: ILabelProsp) {
+export default function Label({ size = "medium", ...props }: ILabelProps) {
   const labelSize: Record<LableSizeType, string> = {
     large: "typo-caption-1 font-medium",
     medium: "typo-body-2-normal font-mediu,",

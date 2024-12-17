@@ -8,7 +8,7 @@ import prisma from "@/libs/prisma";
 import { isAuthenticated } from "@/services/authService";
 
 /**
- * @swagger
+ * !@swagger
  * /api/user:
  *  get:
  *    tags: [User]

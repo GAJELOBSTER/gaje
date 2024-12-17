@@ -4,7 +4,7 @@ type WidthUnitType = "px" | "%" | "em" | "vh";
 type BtnCategoryType = "primary" | "secondary" | "negative" | "text";
 type BtnSizeType = "large" | "medium" | "small";
 
-export interface IButtonProps {
+export interface IBtnProps {
   /** 버튼 내용(텍스트) */
   children: React.ReactNode;
   /** 버튼 카테고리, 디자인 시스템(피그마 컨벤션) */
@@ -25,8 +25,8 @@ export interface IButtonProps {
   onClick?: () => void;
 }
 
-export default function Btn({ category = "primary", size = "medium", ...props }: IButtonProps) {
-  const btnWidth = props.width ? (typeof props.width === "string" ? props.width : `${props.width}px`) : "100%";
+export default function Btn({ category = "primary", size = "medium", ...props }: IBtnProps) {
+  const btnWidth = props.width ? (typeof props.width === "string" ? props.width : `${props.width}px`) : "auto";
 
   const btnCategory: Record<BtnCategoryType, string> = {
     primary: "text-label-common bg-background-primary [&:not(:disabled)]:hover:bg-background-primary-hover",
