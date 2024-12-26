@@ -19,7 +19,8 @@ export interface IIconButtonProps {
 export default function IconBtn({ category = "solid", size = "medium", ...props }: IIconButtonProps) {
   const btnCategory: Record<BtnCategoryType, string> = {
     solid: "bg-background-primary [&:not(:disabled)]:hover:bg-background-primary-hover",
-    outlined: "border border-border-enabled bg-label-common [&:not(:disabled)]:hover:bg-background-secondary-weak",
+    outlined:
+      "border border-1 border-border-enabled bg-label-common [&:not(:disabled)]:hover:bg-background-secondary-weak",
     clear: "",
   };
 

@@ -13,9 +13,9 @@ export interface ILabelProps {
 
 export default function Label({ size = "medium", ...props }: ILabelProps) {
   const labelSize: Record<LableSizeType, string> = {
-    large: "typo-caption-1 font-medium",
-    medium: "typo-body-2-normal font-mediu,",
-    small: "typo-body-2-normal font-medium",
+    large: "typo-body-1-normal font-medium",
+    medium: "typo-body-2-normal font-medium",
+    small: "typo-caption-1 font-medium",
   };
 
   return (
