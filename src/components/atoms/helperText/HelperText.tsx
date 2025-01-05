@@ -13,9 +13,9 @@ export interface IHelperTextProsp {
 
 export default function HelperText({ size = "medium", ...props }: IHelperTextProsp) {
   const labelSize: Record<LableSizeType, string> = {
-    large: "typo-caption-1 font-medium",
+    large: "typo-body-2-normal font-medium",
     medium: "typo-body-2-normal font-mediu,",
-    small: "typo-body-2-normal font-medium",
+    small: "typo-caption-1 font-medium",
   };
 
   return (

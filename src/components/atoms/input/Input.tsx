@@ -73,7 +73,6 @@ export default function Input({ size = "medium", ...args }: IInputProps) {
         onKeyDown={props.onKeyDown}
         onClick={(e) => e.stopPropagation()}
       />
-      {/* {props.endIcon && <IconContainer {...props}>{props.endIcon}</IconContainer>} */}
     </div>
   );
 }

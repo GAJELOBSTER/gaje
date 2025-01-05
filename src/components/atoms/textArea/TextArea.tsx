@@ -74,7 +74,6 @@ export default function TextArea({ size = "medium", ...args }: ITextAreaProps) {
         onKeyDown={props.onKeyDown}
         onClick={(e) => e.stopPropagation()}
       />
-      {/* {props.endIcon && <IconContainer {...props}>{props.endIcon}</IconContainer>} */}
     </div>
   );
 }
