@@ -13,7 +13,7 @@ export type checkBoxObjectType = { [key: number | string]: boolean };
 type CheckBoxCategoryType = "checkbox" | "check";
 type CheckBoxSizeType = "small" | "medium";
 
-interface Iprops {
+export interface ICheckBoxProps {
   className?: string;
   /** 비활성 여부 */
   disabled?: boolean;
@@ -33,7 +33,7 @@ interface Iprops {
   setCheckBoxStateList: React.Dispatch<React.SetStateAction<checkBoxObjectType>>;
 }
 
-export default function CheckBox({ category = "checkbox", size = "medium", ...props }: Iprops) {
+export default function CheckBox({ category = "checkbox", size = "medium", ...props }: ICheckBoxProps) {
   const { className, disabled, isAllCheckBox, label, value, checkBoxStateList, setCheckBoxStateList } = props;
 
   const checkBoxSize: Record<CheckBoxSizeType, string> = {
